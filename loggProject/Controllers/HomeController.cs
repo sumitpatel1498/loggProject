@@ -24,10 +24,11 @@ namespace loggProject.Controllers
             //catch (Exception ex) {
             //    log.Error(ex.ToString());
             //}
-                Logger.Info("Testing information log");
-                Logger.Debug("Testing Debug log");
-                Logger.Fatal("Testing Fatal log");
-       
+            Logger.Info("Testing information log");
+            Logger.Debug("Testing Debug log");
+            Logger.Fatal("Testing Fatal log");
+            Logger.Error("My Error");
+
 
             return View();
         }
