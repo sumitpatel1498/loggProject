@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace loggProject
+namespace loggProject.Models
 {
     using System;
     using System.Collections.Generic;

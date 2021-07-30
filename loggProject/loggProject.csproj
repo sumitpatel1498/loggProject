@@ -133,30 +133,31 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewtonController.cs" />
-    <Compile Include="Controllers\UserInfoController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Student.cs">
+      <DependentUpon>StudentsInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentsInfo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentsInfo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentsInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentsInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentsInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentsInfo.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Student.cs">
-      <DependentUpon>UserInfoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfoModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserInfoModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfoModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserInfoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfoModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserInfoModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModel\StudentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -167,9 +168,26 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\StudentsInfo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StudentsInfo.edmx</DependentUpon>
+      <LastGenOutput>StudentsInfo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\StudentsInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StudentsInfo.edmx</DependentUpon>
+      <LastGenOutput>StudentsInfo.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include=".editorconfig" />
+    <EntityDeploy Include="Models\StudentsInfo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StudentsInfo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\StudentsInfo.edmx.diagram">
+      <DependentUpon>StudentsInfo.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -181,16 +199,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="UserInfoModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UserInfoModel.edmx</DependentUpon>
-      <LastGenOutput>UserInfoModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="UserInfoModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UserInfoModel.edmx</DependentUpon>
-      <LastGenOutput>UserInfoModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -205,15 +213,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <EntityDeploy Include="UserInfoModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UserInfoModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="UserInfoModel.edmx.diagram">
-      <DependentUpon>UserInfoModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Views\UserInfo\Index.cshtml" />
-    <Content Include="Views\UserInfo\Create.cshtml" />
+    <Content Include="Views\Students\Index.cshtml" />
+    <Content Include="Views\Students\Create.cshtml" />
+    <Content Include="Views\Students\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

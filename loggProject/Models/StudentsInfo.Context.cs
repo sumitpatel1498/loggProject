@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace loggProject
+namespace loggProject.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DemoDBEntities5 : DbContext
+    public partial class DemoDBEntities7 : DbContext
     {
-        public DemoDBEntities5()
-            : base("name=DemoDBEntities5")
+        public DemoDBEntities7()
+            : base("name=DemoDBEntities7")
         {
         }
     
