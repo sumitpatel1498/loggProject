@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using loggProject.Models;
+using loggProject.Services;
 using loggProject.ViewModel;
 
 namespace loggProject.Controllers
@@ -8,46 +9,45 @@ namespace loggProject.Controllers
     public class StudentsController : Controller
     {
         // GET: Students
-        DemoDBEntities7 dB = new DemoDBEntities7();
-        private object std;
-        private object StdInfoDto;
+        StudentService service = new StudentService();
 
-        public object Students { get; private set; }
-        public string Name { get; private set; }
-        public string Course { get; private set; }
-        public int Id { get; private set; }
-        
         public ActionResult Index()
         {
-            var students = dB.Students.Select(std => new StudentViewModel {Id = std.Id, Name = std.Name, City= std.City, Course = std.Course}).ToList(); 
+            var students = service.GetStudentList();
             return View(students);
         }
         [HttpGet]
         public ActionResult Create()
         {
-            var students = dB.Students.Select(std => new StudentViewModel { Id = std.Id, Name = std.Name, City = std.City, Course = std.Course }).ToList();
             return View();
         }
         [HttpPost]
-        //public ActionResult Create(StudentViewModel StdInfoDto)
-        //{
-        //    if (ModelState.IsValid) {
-        //        StudentViewModel std = new StudentViewModel();
-        //        {
-        //            Id = StdInfoDto.Id,
-        //            Name = StdInfoDto.Name,
-        //            Course = StdInfoDto.Course,
-        //            City = StdInfoDto.City,
-        //    };
-
-        //        dB.StdInfoDto.Add(std);
-        //    }
-        //    return View(StdInfoDto);
-        //}
-        public ActionResult Edit()
+        public ActionResult Create(StudentViewModel StdInfoDto)
         {
-            
-                return View();
+            if (ModelState.IsValid) {
+
+                return RedirectToAction("Index");
+            }
+            return View(StdInfoDto);
         }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var student = service.GetStudentById(id);
+            ViewBag.Info = "Hello";
+            return View(student);
+        }
+        [HttpPost]
+        public ActionResult Edit(StudentViewModel StdInfoDto)
+        {
+            if (ModelState.IsValid) {
+                var info = service.UpdateStudent(StdInfoDto);
+                TempData["Info"]= info;
+                return RedirectToAction("Index");
+            }
+            return View();
+
+        }
+
     }
 }
