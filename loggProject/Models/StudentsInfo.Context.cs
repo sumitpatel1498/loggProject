@@ -26,5 +26,7 @@ namespace loggProject.Models
         }
     
         public virtual DbSet<Student> Students { get; set; }
+
+        public System.Data.Entity.DbSet<loggProject.ViewModel.StudentViewModel> StudentViewModels { get; set; }
     }
 }
