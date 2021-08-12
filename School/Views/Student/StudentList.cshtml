@@ -3,7 +3,7 @@
     ViewBag.Title = "StudentList";
 }
 <script src="~/Scripts/angular.js"></script>
-<script src="~/Scripts/Student.js"></script>
+<script src="~/Scripts/AngularjsCode/Student.js"></script>
 <h2>StudentList</h2>
 <div ng-app="myApp">
     <div ng-controller="myCtrl" ng-init="GetAllData()" ng-cloak>
@@ -33,20 +33,11 @@
                 <td>{{std.Pincode}}</td>
                 <td>{{std.Course}}</td>
                 <td>{{std.AddmissionDate}}</td>
-
-                @*<td><md-button md-no-ink class="md-primary" ng-click="">Update</md-button></td>
-                    <td><md-button class="md-warn" ng-click="">Delete</md-button></td>*@
-
                 <td>
                     <input type="button" class="btn btn-primary" value="Update" ng-click="Update(std)" />
                     <input type="button" class="btn btn-danger" value="Delete" ng-click="Delete(std)" />
                 </td>
             </tr>
-
-
-
-
-
         </table>
         <div class="form-horizontal" role="form">
             <div class="container">
@@ -60,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">First Name:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="First Name" ng-model="FirstName">
+                                <input type="text" class="form-control" placeholder="First Name" ng-model="FirstName">
                             </div>
                         </div>
                     </div>
@@ -68,7 +59,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Last Name:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputPassword" placeholder="Last Name" ng-model="LastName">
+                                <input type="text" class="form-control" placeholder="Last Name" ng-model="LastName">
                             </div>
                         </div>
                     </div>
@@ -76,7 +67,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Father Name:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputLabel3" placeholder="Father Name" ng-model="FatherName">
+                                <input type="text" class="form-control" placeholder="Father Name" ng-model="FatherName">
                             </div>
                         </div>
                     </div>
@@ -84,7 +75,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Date OF Birth:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Date of Birth" ng-model="DateofBirth">
+                                <input type="Date" class="form-control" placeholder="Date of Birth" ng-model="DateOfBirth">
                             </div>
                         </div>
                     </div>
@@ -92,7 +83,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">City:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="City" ng-model="City">
+                                <input type="text" class="form-control" placeholder="City" ng-model="City">
                             </div>
                         </div>
                     </div>
@@ -100,7 +91,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Address:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Address" ng-model="Address">
+                                <input type="text" class="form-control" placeholder="Address" ng-model="Address">
                             </div>
                         </div>
                     </div>
@@ -108,7 +99,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Gender:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Gender" ng-model="Gender">
+                                <input type="text" class="form-control" placeholder="Gender" ng-model="Gender">
                             </div>
                         </div>
                     </div>
@@ -116,7 +107,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">PinCode:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Pincode" ng-model="PinCode">
+                                <input type="text" class="form-control" placeholder="Pincode" ng-model="Pincode">
                             </div>
                         </div>
                     </div>
@@ -124,18 +115,30 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Course:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Course" ng-model="Course">
+                                <input type="text" class="form-control" placeholder="Course" ng-model="Course">
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-lg-4">
+                    @*<div class="col-sm-6 col-lg-4">
                         <div class="form-group">
-                            <label class="col-md-4 control-label">AddmissionDate:</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Address" ng-model="AddmissionDate">
+                            <md-content layout="column" layout-gt-sm="row"
+                                        layout-padding ng-cloak>
+                                <label class="col-md-4 control-label">AddmissionDate:</label>
+                                <div class="col-md-8">
+
+                                    <md-calendar ng-model="AddmissionDate"></md-calendar>
+                                </div>
+                            </md-content>
+                        </div>
+                    </div>*@
+                    <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Addmission Date</label>
+                                <div class="col-md-8">
+                                    <input type="Date" class="form-control" placeholder="Addmission Date" ng-model="AddmissionDate">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
                 </div>
                 <div class="row">
