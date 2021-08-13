@@ -6,7 +6,7 @@
 <script src="~/Scripts/AngularjsCode/Student.js"></script>
 <h2>StudentList</h2>
 <div ng-app="myApp">
-    <div ng-controller="myCtrl" ng-init="GetAllData()" ng-cloak>
+    <div ng-controller="myCtrl" ng-init="GetAllData()" ng-cloak class="divList">
         <table class="table table-hover">
             <tr>
                 <th>Student ID</th>
@@ -119,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                    @*<div class="col-sm-6 col-lg-4">
+                    <div class="col-sm-6 col-lg-4">
                         <div class="form-group">
                             <md-content layout="column" layout-gt-sm="row"
                                         layout-padding ng-cloak>
@@ -130,7 +130,7 @@
                                 </div>
                             </md-content>
                         </div>
-                    </div>*@
+                    </div>
                     <div class="col-sm-6 col-lg-4">
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Addmission Date</label>

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace School.Services
 {
@@ -45,6 +46,27 @@ namespace School.Services
             }).FirstOrDefault();
             return student;
         }
+        [HttpPost]
+        public int InsertStudent(StudentRegistration Std)
+        {
+            StudentRegistration student = new StudentRegistration()
+            {
+                StudentId = Std.StudentId,
+                FirstName = Std.FirstName,
+                LastName = Std.LastName,
+                FatherName = Std.FatherName,
+                DateOfBirth = Std.DateOfBirth,
+                City = Std.City,
+                Address = Std.Address,
+                Gender = Std.Gender,
+                Pincode = Std.Pincode,
+                Course = Std.Course,
+                AddmissionDate = Std.AddmissionDate
+            };
+            StdEntity.StudentRegistrations.Add(student);
+            return StdEntity.SaveChanges();
+        }
+        [HttpPost]
         public string UpdateStudent(StundentViewModel stdInfoDto)
         {
             var student = StdEntity.StudentRegistrations.Where(s => s.StudentId == stdInfoDto.StudentId).FirstOrDefault();

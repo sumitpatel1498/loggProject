@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using School.Models;
 using School.Services;
+using AutoMapper;
+
 
 namespace School.Controllers
 {
@@ -17,34 +19,15 @@ namespace School.Controllers
             var student = service.GetStudentList();
             return View(student);
         }
+        //Get All Student 
         [HttpPost]
         public JsonResult GetAllStudent()
         {
-            SchoolEntity entities = new SchoolEntity();
-            return Json(entities.StudentRegistrations);
-        }
-
-        //Get All Student 
-        //[HttpPost]
-        //public JsonResult GetAllStudent()
-        //{
-        //    using (SchoolEntity Obj = new SchoolEntity())
-        //    {
-        //      List<StudentRegistration> Std = Obj.StudentRegistrations.ToList();
-        //        return Json(Std, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
-
-        [HttpPost]
-        public JsonResult InsertStudent(StudentRegistration student)
-        {
-            using (SchoolEntity entities = new SchoolEntity())
+            using (SchoolEntity Obj = new SchoolEntity())
             {
-                entities.StudentRegistrations.Add(student);
-                entities.SaveChanges();
+              List<StudentRegistration> Std = Obj.StudentRegistrations.ToList();
+                return Json(Std, JsonRequestBehavior.AllowGet);
             }
-
-            return Json(student);
         }
 
         //Get Student By ID
@@ -56,23 +39,23 @@ namespace School.Controllers
                 return Json(Obj.StudentRegistrations.Find(StdId), JsonRequestBehavior.AllowGet);
             }
         }
-        //[HttpPost]
-        //public string InsertStudent(StudentRegistration Std)
-        //{
-        //    if (Std != null)
-        //    {
-        //        using (SchoolEntity Obj = new SchoolEntity())
-        //        {
-        //            Obj.StudentRegistrations.Add(Std);
-        //            Obj.SaveChanges();
-        //            return "Student Added Successfully";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return "Student Not Inserted! Try Again";
-        //    }
-        //}
+        [HttpPost]
+        public string InsertStudent(StudentRegistration Std)
+        {
+           if (Std != null)
+          {
+                using (SchoolEntity Obj = new SchoolEntity())
+               {
+                Obj.StudentRegistrations.Add(Std);
+                 Obj.SaveChanges();
+                    return "Student Added Successfully";
+                }
+            }
+            else
+            {
+                return "Student Not Inserted! Try Again";
+            }
+        }
     }
 }
 
