@@ -24,9 +24,9 @@ var DemoProjectExtension;
             _this.dataSvc = dataSvc;
             _this.$scope = $scope;
             _this.firstName = "Sumit";
-            _this.lastName = "Patel";
+            _this.lastName = "";
             _this.rollNumber = 3333;
-            _this.$scope.firstName = "Darshan";
+            //  this.$scope.firstName = "Darshan";
             _this.myDate = new Date();
             $scope.getStudent = function () {
                 _this.showMessage("show message");

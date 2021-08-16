@@ -17,15 +17,41 @@
     </div>
     {{firstName}}<br /><br />
     {{sp.firstName}}<br /><br />
-<div>
-    <md-datepicker ng-model="sp.myDate" md-placeholder="Enter date"
-                   input-aria-describedby="datepicker-description"
-                   input-aria-labelledby="datepicker-header "></md-datepicker>
-    <p style="display: none" id="datepicker-description">
-</div>
-</div>
-@section scripts{
-    @Scripts.Render("~/bundles/Angular")
-    @Scripts.Render("~/bundles/Common")
-@Scripts.Render("~/Bundle/Student")
+
+
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>First name</label>
+            <input ng-model="sp.firstName">
+        </md-input-container><br /><br />
+
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Last Name</label>
+            <input ng-model="sp.lastName">
+        </md-input-container><br /><br />
+    </div>
+
+    <md-input-container class="md-block">
+        <label>Address</label>
+        <input ng-model="sp.address">
+    </md-input-container>
+
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>City</label>
+            <input ng-model="sp.city">
+        </md-input-container>
+
+        <div>
+            <md-datepicker ng-model="sp.myDate" md-placeholder="Enter date"
+                           input-aria-describedby="datepicker-description"
+                           input-aria-labelledby="datepicker-header "></md-datepicker>
+            <p style="display: none" id="datepicker-description">
+        </div>
+    </div>
+    @section scripts{
+        @Scripts.Render("~/bundles/Angular")
+        @Scripts.Render("~/bundles/Common")
+        @Scripts.Render("~/Bundle/Student")
     }
+    </div>

@@ -7,6 +7,8 @@ module DemoProjectExtension {
         firstName: String;
         
     }
+
+   
     export class PathwayCtrl extends wp.angularBase.BaseCtrl implements angular.IController {
         firstName: String;
         lastName: String;
@@ -16,6 +18,7 @@ module DemoProjectExtension {
         getStudent() {
             
         }
+
         $scope: DemoProjectExtension.IPathwayScope;
         private $mdDialog: any;
         constructor($scope: DemoProjectExtension.IPathwayScope, private dataSvc: StudentDataService, $timeout, $mdDialog: any, $mdSelect: any, $mdToast: any) {
@@ -23,9 +26,9 @@ module DemoProjectExtension {
             super($scope, $mdToast);
             this.$scope = $scope;
             this.firstName = "Sumit";
-            this.lastName = "Patel";
+            this.lastName = "";
             this.rollNumber = 3333;
-            this.$scope.firstName = "Darshan";
+          //  this.$scope.firstName = "Darshan";
             this.myDate = new Date();
             $scope.getStudent = () => {
                 this.showMessage("show message");
