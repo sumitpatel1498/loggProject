@@ -23,18 +23,27 @@ var DemoProjectExtension;
             var _this = _super.call(this, $scope, $mdToast) || this;
             _this.dataSvc = dataSvc;
             _this.$scope = $scope;
-            _this.firstName = "Sumit";
-            _this.lastName = "";
-            _this.rollNumber = 3333;
+            // this.firstName = "Sumit";
+            // this.lastName = "";
+            // this.rollNumber = 3333;
             //  this.$scope.firstName = "Darshan";
-            _this.myDate = new Date();
+            //   this.myDate = new Date();
+            $scope.project = {
+                description: 'Nuclear Missile Defense System',
+                rate: 500,
+                special: true,
+                tos: true
+            };
             $scope.getStudent = function () {
-                _this.showMessage("show message");
             };
             _this.$scope.getStudent();
             _this.getStudent();
             return _this;
         }
+        // firstName: String;
+        // lastName: String;
+        // rollNumber: Number;
+        // myDate: any;
         PathwayCtrl.prototype.getStudent = function () {
         };
         PathwayCtrl.prototype.$onInit = function () {

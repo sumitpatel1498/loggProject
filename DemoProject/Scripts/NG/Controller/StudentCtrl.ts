@@ -10,10 +10,11 @@ module DemoProjectExtension {
 
    
     export class PathwayCtrl extends wp.angularBase.BaseCtrl implements angular.IController {
-        firstName: String;
-        lastName: String;
-        rollNumber: Number;
-        myDate: any;
+       // firstName: String;
+       // lastName: String;
+       // rollNumber: Number;
+       // myDate: any;
+
         
         getStudent() {
             
@@ -25,13 +26,20 @@ module DemoProjectExtension {
 
             super($scope, $mdToast);
             this.$scope = $scope;
-            this.firstName = "Sumit";
-            this.lastName = "";
-            this.rollNumber = 3333;
+           // this.firstName = "Sumit";
+           // this.lastName = "";
+           // this.rollNumber = 3333;
           //  this.$scope.firstName = "Darshan";
-            this.myDate = new Date();
+         //   this.myDate = new Date();
+
+            $scope.project = {
+                description: 'Nuclear Missile Defense System',
+                rate: 500,
+                special: true,
+                tos : true
+            };
             $scope.getStudent = () => {
-                this.showMessage("show message");
+               
             }
 
 
