@@ -28,6 +28,51 @@ namespace DemoProject.Service
             entities.Clients.Add(clientObj);
             return entities.SaveChanges();
         }
+        public List<ClientViewModel>GetClientList()
+        {
+            var clientRecord = entities.Clients.ToList();
+            List<ClientViewModel> vm = new List<ClientViewModel>();
+            foreach( var client in  clientRecord)
+            {
+                ClientViewModel clientView = new ClientViewModel()
+                {   
+                    ClientId = client.ClientId,
+                    Description = client.Description,
+                    ClientName = client.ClientName,
+                    Project = client.Project,
+                    ClientEmail = client.ClientEmail,
+                    Rate = client.Rate,
+                    TermsAndService = client.TermsAndService,
+                    special = client.special 
+                };
+                vm.Add(clientView);
+            }
+            return vm;
+        }
+
+        public ClientViewModel GetClientById(int id)
+        {
+            var clientRecord = entities.Clients.Where(s => s.ClientId == id).FirstOrDefault();
+            if(clientRecord != null)
+            {
+                ClientViewModel clientView = new ClientViewModel()
+                {
+                    ClientId = clientRecord.ClientId,
+                    Description = clientRecord.Description,
+                    ClientName = clientRecord.ClientName,
+                    Project = clientRecord.Project,
+                    ClientEmail = clientRecord.ClientEmail,
+                    Rate = clientRecord.Rate,
+                    TermsAndService = clientRecord.TermsAndService,
+                    special = clientRecord.special
+                };
+                return clientView;
+            }
+            else
+            {
+                return null;
+            }
+        }
         public int UpdateClient(ClientViewModel data)
         {
             var clientRecord = entities.Clients.Where(s => s.ClientId == data.ClientId).FirstOrDefault();

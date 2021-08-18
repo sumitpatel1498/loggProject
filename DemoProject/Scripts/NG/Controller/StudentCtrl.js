@@ -22,33 +22,34 @@ var DemoProjectExtension;
         function PathwayCtrl($scope, dataSvc, $timeout, $mdDialog, $mdSelect, $mdToast) {
             var _this = _super.call(this, $scope, $mdToast) || this;
             _this.dataSvc = dataSvc;
+            _this.insertClient = function () {
+                _this.dataSvc.postSkill(_this.$scope.project).then(function (data) {
+                    console.log(data);
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
+            };
             _this.$scope = $scope;
             // this.firstName = "Sumit";
             // this.lastName = "";
             // this.rollNumber = 3333;
             //  this.$scope.firstName = "Darshan";
             //   this.myDate = new Date();
+            $scope.GetAllData = {};
             $scope.project = {
                 description: 'Nuclear Missile Defense System',
-                rate: 500,
+                rate: 800,
                 special: true,
-                tos: true
+                tos: true,
+                clientEmail: '',
+                clientName: 'dev'
             };
-            $scope.getStudent = function () {
-            };
-            _this.$scope.getStudent();
-            _this.getStudent();
             return _this;
         }
-        // firstName: String;
-        // lastName: String;
-        // rollNumber: Number;
-        // myDate: any;
-        PathwayCtrl.prototype.getStudent = function () {
+        PathwayCtrl.prototype.InsertClient = function () {
         };
         PathwayCtrl.prototype.$onInit = function () {
-            this.getStudent();
-            this.$scope.getStudent();
         };
         PathwayCtrl.prototype.init = function () {
         };

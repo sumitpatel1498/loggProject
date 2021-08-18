@@ -4,19 +4,32 @@ module DemoProjectExtension {
     export interface IPathwayScope extends ng.IScope {
         loading: boolean;
         loadingTask: boolean;
-        firstName: String;
+        Description: String;
+        ClientName: String;
+        ClientEmail: String;
+        Project: String;
+        Rate: String;
+        TermsAndService: String;
+        special: String;
+
+        project: IStudentModel
         
     }
-
-   
     export class PathwayCtrl extends wp.angularBase.BaseCtrl implements angular.IController {
        // firstName: String;
        // lastName: String;
        // rollNumber: Number;
        // myDate: any;
-
+      
+        Description: String;
+        ClientName: String;
+        ClientEmail: String;
+        Project: String;
+        Rate: String;
+        TermsAndService: String;
+        special: String;
         
-        getStudent() {
+        InsertClient() {
             
         }
 
@@ -30,32 +43,35 @@ module DemoProjectExtension {
            // this.lastName = "";
            // this.rollNumber = 3333;
           //  this.$scope.firstName = "Darshan";
-         //   this.myDate = new Date();
+            //   this.myDate = new Date();
+            $scope.GetAllData = {
 
+            }
             $scope.project = {
                 description: 'Nuclear Missile Defense System',
-                rate: 500,
+                rate: 800,
                 special: true,
-                tos : true
+                tos: true,
+                clientEmail: '',
+                clientName:'dev'
             };
-            $scope.getStudent = () => {
-               
-            }
-
-
-            this.$scope.getStudent();
-            this.getStudent();
         }
 
         $onInit() {
-            this.getStudent();
-            this.$scope.getStudent();
         }
 
         private init(): void {
         }
 
+        insertClient = () => {
+            this.dataSvc.postSkill(this.$scope.project).then((data) => {
+                console.log(data);
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
 
+            })
+        }
     
     }
     PathwayCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];
