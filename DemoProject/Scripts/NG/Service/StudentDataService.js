@@ -8,22 +8,6 @@ var DemoProjectExtension;
             this.httpService = httpService;
             this.qService = qService;
         }
-        //getPathwayDetail(pathwayId: number): ng.IPromise<IPathwayDto> {
-        //    var self = this;
-        //    var deferred = self.qService.defer<IPathwayDto>();
-        //    var apiUrl = "https://localhost:44397/student";
-        //    ajaxApi({
-        //        url: apiUrl,
-        //        success: (response: IPathwayDto) => {
-        //            deferred.resolve(response);
-        //        },
-        //        error: (xhr) => {
-        //            Workpulse.Site.Alert(xhr)
-        //            deferred.reject(xhr);
-        //        }
-        //    });
-        //    return deferred.promise;
-        //}
         StudentDataService.prototype.postSkill = function (pathway) {
             var self = this;
             var deferred = self.qService.defer();
@@ -33,6 +17,22 @@ var DemoProjectExtension;
                 data: JSON.stringify(pathway),
                 type: 'POST',
                 contentType: 'application/json',
+                success: function (response) {
+                    deferred.resolve(response);
+                },
+                error: function (xhr) {
+                    Workpulse.Site.Alert(xhr);
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
+        };
+        StudentDataService.prototype.getPathwayDetail = function (pathwayId) {
+            var self = this;
+            var deferred = self.qService.defer();
+            var apiUrl = "https://localhost:44397/student/GetClientList";
+            ajaxApi({
+                url: apiUrl,
                 success: function (response) {
                     deferred.resolve(response);
                 },

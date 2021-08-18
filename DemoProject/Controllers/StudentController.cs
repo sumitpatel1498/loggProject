@@ -14,6 +14,7 @@ namespace DemoProject.Controllers
         ClientService service = new ClientService();
         public ActionResult Index(ClientViewModel model)
         {
+            
             return View();
         }
         public ActionResult Edit()
@@ -22,7 +23,8 @@ namespace DemoProject.Controllers
         }
         public JsonResult InsertClient(ClientViewModel model)
         {
-            return Json(model, JsonRequestBehavior.AllowGet);
+            var result = service.InsertClient(model);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }
