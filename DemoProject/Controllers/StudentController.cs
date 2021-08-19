@@ -12,7 +12,7 @@ namespace DemoProject.Controllers
     {
         // GET: Student
         ClientService service = new ClientService();
-        public ActionResult Index(ClientViewModel model)
+        public ActionResult Index()
         {
             
             return View();
@@ -21,9 +21,20 @@ namespace DemoProject.Controllers
         {
             return View();
         }
+        public ActionResult AllClient()
+        {
+            return View();
+        }
+        [HttpPost]
         public JsonResult InsertClient(ClientViewModel model)
         {
             var result = service.InsertClient(model);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public JsonResult GetClientList()
+        {
+            var result = service.GetClientList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

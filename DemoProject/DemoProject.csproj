@@ -136,22 +136,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs">
-      <DependentUpon>StudentDB.tt</DependentUpon>
+      <DependentUpon>Student.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StudentDB.Context.cs">
+    <Compile Include="Models\Student.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StudentDB.Context.tt</DependentUpon>
+      <DependentUpon>Student.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StudentDB.cs">
+    <Compile Include="Models\Student.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StudentDB.tt</DependentUpon>
+      <DependentUpon>Student.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StudentDB.Designer.cs">
+    <Compile Include="Models\Student.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StudentDB.edmx</DependentUpon>
+      <DependentUpon>Student.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ClientService.cs" />
@@ -180,15 +180,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\StudentDB.Context.tt">
+    <Content Include="Models\Student.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StudentDB.edmx</DependentUpon>
-      <LastGenOutput>StudentDB.Context.cs</LastGenOutput>
+      <DependentUpon>Student.edmx</DependentUpon>
+      <LastGenOutput>Student.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\StudentDB.tt">
+    <Content Include="Models\Student.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StudentDB.edmx</DependentUpon>
-      <LastGenOutput>StudentDB.cs</LastGenOutput>
+      <DependentUpon>Student.edmx</DependentUpon>
+      <LastGenOutput>Student.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -239,12 +239,12 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <EntityDeploy Include="Models\StudentDB.edmx">
+    <EntityDeploy Include="Models\Student.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StudentDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>Student.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\StudentDB.edmx.diagram">
-      <DependentUpon>StudentDB.edmx</DependentUpon>
+    <Content Include="Models\Student.edmx.diagram">
+      <DependentUpon>Student.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
@@ -1027,6 +1027,7 @@
     <Content Include="Scripts\moment-with-locales.min.js.map" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\AllClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

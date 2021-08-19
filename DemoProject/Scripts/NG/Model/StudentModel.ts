@@ -5,7 +5,7 @@
         clientName: string;
         clientEmail: string;
         rate: number;
-        tos: boolean;
+        TermsAndService: boolean;
         special: boolean;
     }
 

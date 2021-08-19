@@ -9,8 +9,8 @@ module DemoProjectExtension {
         ClientEmail: String;
         Project: String;
         Rate: String;
-        TermsAndService: String;
-        special: String;
+        TermsAndService: boolean;
+        special: boolean;
 
         project: IStudentModel
         
@@ -26,13 +26,10 @@ module DemoProjectExtension {
         ClientEmail: String;
         Project: String;
         Rate: String;
-        TermsAndService: String;
-        special: String;
+        TermsAndService: boolean;
+        special: boolean;
         
-        InsertClient() {
-            
-        }
-
+      
         $scope: DemoProjectExtension.IPathwayScope;
         private $mdDialog: any;
         constructor($scope: DemoProjectExtension.IPathwayScope, private dataSvc: StudentDataService, $timeout, $mdDialog: any, $mdSelect: any, $mdToast: any) {
@@ -49,11 +46,11 @@ module DemoProjectExtension {
             }
             $scope.project = {
                 description: 'Nuclear Missile Defense System',
-                rate: 800,
+                rate: 1234,
                 special: true,
-                tos: true,
-                clientEmail: '',
-                clientName:'dev'
+                TermsAndService : true,
+                clientEmail: 'sumit@gmail.com',
+                clientName:'Sumit'
             };
         }
 
@@ -62,10 +59,11 @@ module DemoProjectExtension {
 
         private init(): void {
         }
-
-        insertClient = () => {
+        
+        InsertClient = () => {
+       
             this.dataSvc.postSkill(this.$scope.project).then((data) => {
-                console.log(data);
+               console.log(data);
             }).catch((error) => {
                 console.log(error);
             }).finally(() => {

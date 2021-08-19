@@ -22,7 +22,7 @@ var DemoProjectExtension;
         function PathwayCtrl($scope, dataSvc, $timeout, $mdDialog, $mdSelect, $mdToast) {
             var _this = _super.call(this, $scope, $mdToast) || this;
             _this.dataSvc = dataSvc;
-            _this.insertClient = function () {
+            _this.InsertClient = function () {
                 _this.dataSvc.postSkill(_this.$scope.project).then(function (data) {
                     console.log(data);
                 }).catch(function (error) {
@@ -39,16 +39,14 @@ var DemoProjectExtension;
             $scope.GetAllData = {};
             $scope.project = {
                 description: 'Nuclear Missile Defense System',
-                rate: 800,
+                rate: 1234,
                 special: true,
-                tos: true,
-                clientEmail: '',
-                clientName: 'dev'
+                TermsAndService: true,
+                clientEmail: 'sumit@gmail.com',
+                clientName: 'Sumit'
             };
             return _this;
         }
-        PathwayCtrl.prototype.InsertClient = function () {
-        };
         PathwayCtrl.prototype.$onInit = function () {
         };
         PathwayCtrl.prototype.init = function () {

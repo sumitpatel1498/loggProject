@@ -11,12 +11,13 @@ namespace DemoProject.Service
 {
     public class ClientService
     {
-        DemoProjectEntities entities = new DemoProjectEntities();
-       [HttpPost]
-       public int InsertClient(ClientViewModel record)
+        DemoProjectEntity entities = new DemoProjectEntity();
+       
+        public int InsertClient(ClientViewModel record)
         {
             Client clientObj = new Client()
-            {
+            {   
+                ClientId = record.ClientId,
                 Description = record.Description, 
                 ClientName = record.ClientName,
                 Project = record.Project,
@@ -28,7 +29,7 @@ namespace DemoProject.Service
             entities.Clients.Add(clientObj);
             return entities.SaveChanges();
         }
-        public List<ClientViewModel>GetClientList()
+        public List<ClientViewModel> GetClientList()
         {
             var clientRecord = entities.Clients.ToList();
             List<ClientViewModel> vm = new List<ClientViewModel>();
@@ -43,7 +44,7 @@ namespace DemoProject.Service
                     ClientEmail = client.ClientEmail,
                     Rate = client.Rate,
                     TermsAndService = client.TermsAndService,
-                    special = client.special 
+                    //special = client.special 
                 };
                 vm.Add(clientView);
             }
@@ -64,7 +65,7 @@ namespace DemoProject.Service
                     ClientEmail = clientRecord.ClientEmail,
                     Rate = clientRecord.Rate,
                     TermsAndService = clientRecord.TermsAndService,
-                    special = clientRecord.special
+                  // special = clientRecord.special
                 };
                 return clientView;
             }

@@ -21,7 +21,8 @@ var DemoProjectExtension;
                     deferred.resolve(response);
                 },
                 error: function (xhr) {
-                    Workpulse.Site.Alert(xhr);
+                    console.log(xhr);
+                    Workpulse.Site.AlertJS(xhr);
                     deferred.reject(xhr);
                 }
             });

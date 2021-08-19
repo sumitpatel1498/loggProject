@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "AllClient";
+}
+@section HeadContent {
+    @Styles.Render("~/Content/Student")
+}
+<br />
+<br />
+<br />
+
+<div ng-app="myApp" ng-controller="PathwayCtrl as sp" ng-cloak>
+    <table class="table table-hover table-responsive">
+        <tr>
+            <th>Client Id</th>
+            <th>Description</th>
+            <th>Client Name</th>
+            <th>Project</th>
+            <th>Client Email</th>
+            <th>Rate</th>
+        </tr>
+        <tr ng-repeat="client in Client">
+            {{client.ClientId}}
+            {{client.Description}}
+            {{client.ClientName}}
+            {{client.Project}}
+            {{client.ClientEmail}}
+            {{client.Rate}}
+
+            <md-button class="md-raised md-primary">Update</md-button>
+            <md-button class="md-raised md-accent">Delete</md-button>
+        </tr>
+    </table>
+
+    @section scripts{
+        @Scripts.Render("~/bundles/Angular")
+        @Scripts.Render("~/bundles/Common")
+        @Scripts.Render("~/Bundle/Student")
+    }
+</div>
+

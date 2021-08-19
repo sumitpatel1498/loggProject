@@ -26,9 +26,11 @@ module DemoProjectExtension {
                     deferred.resolve(response);
                 },
                 error: (xhr) => {
-                    Workpulse.Site.Alert(xhr)
+                    console.log(xhr)
+                    Workpulse.Site.AlertJS(xhr)
                     deferred.reject(xhr);
                 }
+                
             });
             return deferred.promise;
         }

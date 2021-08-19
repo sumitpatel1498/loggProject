@@ -20,7 +20,7 @@ namespace DemoProject.Models
         public string Project { get; set; }
         public string ClientEmail { get; set; }
         public int Rate { get; set; }
-        public string TermsAndService { get; set; }
-        public string special { get; set; }
+        public bool TermsAndService { get; set; }
+        public Nullable<bool> special { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DemoProjectModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DemoProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="ClientId" />
@@ -15,17 +15,16 @@
           <Property Name="Project" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ClientEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Rate" Type="int" Nullable="false" />
-          <Property Name="TermsAndService" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="special" Type="varchar" MaxLength="10" />
+          <Property Name="TermsAndService" Type="bit" Nullable="false" />
+          <Property Name="special" Type="bit" />
         </EntityType>
-        <EntityContainer Name="DemoProjectModel1StoreContainer">
+        <EntityContainer Name="DemoProjectModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DemoProjectModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DemoProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="ClientId" />
@@ -36,10 +35,10 @@
           <Property Name="Project" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ClientEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Rate" Type="Int32" Nullable="false" />
-          <Property Name="TermsAndService" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="special" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TermsAndService" Type="Boolean" Nullable="false" />
+          <Property Name="special" Type="Boolean" />
         </EntityType>
-        <EntityContainer Name="DemoProjectEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DemoProjectEntity" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clients" EntityType="Self.Client" />
         </EntityContainer>
       </Schema>
@@ -47,9 +46,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DemoProjectModel1StoreContainer" CdmEntityContainer="DemoProjectEntities">
+        <EntityContainerMapping StorageEntityContainer="DemoProjectModelStoreContainer" CdmEntityContainer="DemoProjectEntity">
           <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="DemoProjectModel1.Client">
+            <EntityTypeMapping TypeName="DemoProjectModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
