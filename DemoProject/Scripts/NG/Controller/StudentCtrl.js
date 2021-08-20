@@ -30,6 +30,31 @@ var DemoProjectExtension;
                 }).finally(function () {
                 });
             };
+            _this.GetClientList = function () {
+                _this.dataSvc.getPathwayDetail().then(function (data) {
+                    _this.clientList = data;
+                    console.log(data);
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
+            };
+            _this.DeleteClient = function (ClientId) {
+                _this.dataSvc.deleteClient(ClientId).then(function (data) {
+                    console.log(data);
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
+            };
+            _this.UpdateClient = function () {
+                _this.dataSvc.updateSkill(_this.$scope.project).then(function (data) {
+                    console.log(data);
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
+            };
             _this.$scope = $scope;
             // this.firstName = "Sumit";
             // this.lastName = "";
@@ -43,9 +68,12 @@ var DemoProjectExtension;
                 special: true,
                 TermsAndService: true,
                 clientEmail: 'sumit@gmail.com',
-                clientName: 'Sumit'
+                clientName: 'Sumit',
+                project: "",
             };
+            _this.GetClientList();
             return _this;
+            // this.UpdateClient();
         }
         PathwayCtrl.prototype.$onInit = function () {
         };

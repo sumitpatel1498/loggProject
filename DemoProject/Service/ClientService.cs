@@ -65,7 +65,7 @@ namespace DemoProject.Service
                     ClientEmail = clientRecord.ClientEmail,
                     Rate = clientRecord.Rate,
                     TermsAndService = clientRecord.TermsAndService,
-                  // special = clientRecord.special
+                    //special = clientRecord.special
                 };
                 return clientView;
             }

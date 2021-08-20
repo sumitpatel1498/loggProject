@@ -37,5 +37,12 @@ namespace DemoProject.Controllers
             var result = service.GetClientList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        [HttpDelete]
+        public JsonResult DeleteClient(int ClientId)
+        {
+            var result = service.DeleteClient(ClientId);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }

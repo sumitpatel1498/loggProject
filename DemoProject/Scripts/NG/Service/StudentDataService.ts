@@ -35,19 +35,61 @@ module DemoProjectExtension {
             return deferred.promise;
         }
 
-        getPathwayDetail(pathwayId: number): ng.IPromise<IStudentModel> {
+        getPathwayDetail(): ng.IPromise<IStudentModel[]> {
             var self = this;
-            var deferred = self.qService.defer<IStudentModel>();
+            var deferred = self.qService.defer<IStudentModel[]>();
             var apiUrl = "https://localhost:44397/student/GetClientList";
             ajaxApi({
+                type: 'GET',
                 url: apiUrl,
+                success: (response: IStudentModel[]) => {
+                    deferred.resolve(response);
+                },
+                error: (xhr) => {
+                    console.log(xhr)
+                    Workpulse.Site.AlertJS(xhr)
+                    deferred.reject(xhr);
+                } 
+            });
+            return deferred.promise;
+        }
+        deleteClient(ClientId :number): ng.IPromise<IStudentModel> {
+            var self = this;
+            var deferred = self.qService.defer<IStudentModel>();
+            var apiUrl = "https://localhost:44397/student/DeleteClient" + ClientId;
+            ajaxApi({
+                url: apiUrl,
+                type: 'GET',      
                 success: (response: IStudentModel) => {
                     deferred.resolve(response);
                 },
                 error: (xhr) => {
-                    Workpulse.Site.Alert(xhr)
+                    console.log(xhr)
+                    Workpulse.Site.AlertJS(xhr)
                     deferred.reject(xhr);
                 }
+
+            });
+            return deferred.promise;
+        }
+        updateSkill(pathway: IStudentModel): ng.IPromise<IStudentModel> {
+            var self = this;
+            var deferred = self.qService.defer<IStudentModel>();
+            var apiUrl = "https://localhost:44397/student/UpdateClient";
+            ajaxApi({
+                url: apiUrl,
+                data: JSON.stringify(pathway),
+                type: 'POST',
+                contentType: 'application/json',
+                success: (response: IStudentModel) => {
+                    deferred.resolve(response);
+                },
+                error: (xhr) => {
+                    console.log(xhr)
+                    Workpulse.Site.AlertJS(xhr)
+                    deferred.reject(xhr);
+                }
+
             });
             return deferred.promise;
         }
