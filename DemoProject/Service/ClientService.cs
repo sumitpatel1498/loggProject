@@ -12,13 +12,13 @@ namespace DemoProject.Service
     public class ClientService
     {
         DemoProjectEntity entities = new DemoProjectEntity();
-       
+
         public int InsertClient(ClientViewModel record)
         {
             Client clientObj = new Client()
-            {   
+            {
                 ClientId = record.ClientId,
-                Description = record.Description, 
+                Description = record.Description,
                 ClientName = record.ClientName,
                 Project = record.Project,
                 ClientEmail = record.ClientEmail,
@@ -33,10 +33,10 @@ namespace DemoProject.Service
         {
             var clientRecord = entities.Clients.ToList();
             List<ClientViewModel> vm = new List<ClientViewModel>();
-            foreach( var client in  clientRecord)
+            foreach (var client in clientRecord)
             {
                 ClientViewModel clientView = new ClientViewModel()
-                {   
+                {
                     ClientId = client.ClientId,
                     Description = client.Description,
                     ClientName = client.ClientName,
@@ -54,7 +54,7 @@ namespace DemoProject.Service
         public ClientViewModel GetClientById(int id)
         {
             var clientRecord = entities.Clients.Where(s => s.ClientId == id).FirstOrDefault();
-            if(clientRecord != null)
+            if (clientRecord != null)
             {
                 ClientViewModel clientView = new ClientViewModel()
                 {
@@ -65,7 +65,7 @@ namespace DemoProject.Service
                     ClientEmail = clientRecord.ClientEmail,
                     Rate = clientRecord.Rate,
                     TermsAndService = clientRecord.TermsAndService,
-                    //special = clientRecord.special
+                    special = clientRecord.special != null && clientRecord.special.Value
                 };
                 return clientView;
             }
@@ -77,15 +77,15 @@ namespace DemoProject.Service
         public int UpdateClient(ClientViewModel data)
         {
             var clientRecord = entities.Clients.Where(s => s.ClientId == data.ClientId).FirstOrDefault();
-            if(clientRecord != null)
-            { 
-               clientRecord.Description = data.Description;
-               clientRecord.ClientName = data.ClientName;
-               clientRecord.Project = data.Project;
-               clientRecord.ClientEmail = data.ClientEmail;
-               clientRecord.Rate = data.Rate;
-               clientRecord.TermsAndService = data.TermsAndService;
-               clientRecord.special = data.special;
+            if (clientRecord != null)
+            {
+                clientRecord.Description = data.Description;
+                clientRecord.ClientName = data.ClientName;
+                clientRecord.Project = data.Project;
+                clientRecord.ClientEmail = data.ClientEmail;
+                clientRecord.Rate = data.Rate;
+                clientRecord.TermsAndService = data.TermsAndService;
+                clientRecord.special = data.special;
             }
             entities.Entry<Client>(clientRecord).State = System.Data.Entity.EntityState.Modified;
             return entities.SaveChanges();
@@ -93,7 +93,7 @@ namespace DemoProject.Service
         public int DeleteClient(int ClientId)
         {
             var data = entities.Clients.Where(s => s.ClientId == ClientId).FirstOrDefault();
-            if(data != null)
+            if (data != null)
             {
                 entities.Clients.Remove(data);
                 return entities.SaveChanges();

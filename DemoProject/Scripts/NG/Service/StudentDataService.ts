@@ -53,6 +53,24 @@ module DemoProjectExtension {
             });
             return deferred.promise;
         }
+        getInfoByid(id:number): ng.IPromise<IStudentModel> {
+            var self = this;
+            var deferred = self.qService.defer<IStudentModel>();
+            var apiUrl = "https://localhost:44397/student/GetClientInfo/"+id;
+            ajaxApi({
+                type: 'GET',
+                url: apiUrl,
+                success: (response: IStudentModel) => {
+                    deferred.resolve(response);
+                },
+                error: (xhr) => {
+                    console.log(xhr)
+                    Workpulse.Site.AlertJS(xhr)
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
+        }
         deleteClient(ClientId :number): ng.IPromise<IStudentModel> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel>();

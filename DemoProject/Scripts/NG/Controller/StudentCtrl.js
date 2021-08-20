@@ -55,13 +55,11 @@ var DemoProjectExtension;
                 }).finally(function () {
                 });
             };
+            //View info
+            _this.ShowInfo = function (id) {
+                window.location.href = "/student/viewInfo/" + id;
+            };
             _this.$scope = $scope;
-            // this.firstName = "Sumit";
-            // this.lastName = "";
-            // this.rollNumber = 3333;
-            //  this.$scope.firstName = "Darshan";
-            //   this.myDate = new Date();
-            $scope.GetAllData = {};
             $scope.project = {
                 description: 'Nuclear Missile Defense System',
                 rate: 1234,
@@ -69,11 +67,23 @@ var DemoProjectExtension;
                 TermsAndService: true,
                 clientEmail: 'sumit@gmail.com',
                 clientName: 'Sumit',
-                project: "",
+                project: '',
             };
-            _this.GetClientList();
+            _this.infoId = Number($("#hdnInfoId").val());
+            if (_this.infoId > 0) {
+                //call the info api using service.
+                _this.dataSvc.getInfoByid(_this.infoId).then(function (data) {
+                    console.log("Infodata", data);
+                    $scope.project = data;
+                }).catch(function (error) {
+                }).finally(function () {
+                });
+            }
+            else {
+                _this.GetClientList();
+            }
+            $scope.GetAllData = {};
             return _this;
-            // this.UpdateClient();
         }
         PathwayCtrl.prototype.$onInit = function () {
         };

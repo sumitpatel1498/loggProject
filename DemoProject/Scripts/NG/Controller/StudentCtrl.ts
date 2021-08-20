@@ -51,12 +51,11 @@ module DemoProjectExtension {
                 TermsAndService: true,
                 clientEmail: 'sumit@gmail.com',
                 clientName: 'Sumit',
-                project: '',
+                project: "",
             };
 
             this.GetClientList();
-            // this.UpdateClient();
-            
+            this.UpdateClient();
         }
 
         $onInit() {
@@ -67,7 +66,8 @@ module DemoProjectExtension {
        
         InsertClient = () => {
             this.dataSvc.postSkill(this.$scope.project).then((data) => {
-                         
+               
+               
                 console.log(data);
             }).catch((error) => {
                 console.log(error);
@@ -88,17 +88,11 @@ module DemoProjectExtension {
 
             })
         }
-        DeleteClient = (ClientId) => {
-            this.dataSvc.deleteClient(ClientId).then((data) => {
-                console.log(data);
-            }).catch((error) => {
-                console.log(error);
-            }).finally(() => {
 
-            })
-        }
-        UpdateClient = () => {
-            this.dataSvc.updateSkill(this.$scope.project).then((data) => {
+        Client = () => {
+            this.dataSvc.postSkill(this.$scope.project).then((data) => {
+
+
                 console.log(data);
             }).catch((error) => {
                 console.log(error);

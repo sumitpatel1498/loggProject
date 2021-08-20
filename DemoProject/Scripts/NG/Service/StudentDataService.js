@@ -46,6 +46,24 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
+        StudentDataService.prototype.getInfoByid = function (id) {
+            var self = this;
+            var deferred = self.qService.defer();
+            var apiUrl = "https://localhost:44397/student/GetClientInfo/" + id;
+            ajaxApi({
+                type: 'GET',
+                url: apiUrl,
+                success: function (response) {
+                    deferred.resolve(response);
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                    Workpulse.Site.AlertJS(xhr);
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
+        };
         StudentDataService.prototype.deleteClient = function (ClientId) {
             var self = this;
             var deferred = self.qService.defer();
