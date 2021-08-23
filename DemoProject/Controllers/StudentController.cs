@@ -25,6 +25,10 @@ namespace DemoProject.Controllers
         {
             return View();
         }
+        public ActionResult viewInfo()
+        {
+            return View();
+        }
         [HttpPost]
         public JsonResult InsertClient(ClientViewModel model)
         {
@@ -32,9 +36,21 @@ namespace DemoProject.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
+        public JsonResult GetClientById(int id)
+        {
+            var result = service.GetClientById(id);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
         public JsonResult GetClientList()
         {
             var result = service.GetClientList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public JsonResult UpdateClient(int ClientId)
+        {
+            var result = service.UpdateClient(ClientId);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpDelete]

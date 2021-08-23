@@ -44,11 +44,16 @@ namespace DemoProject.Service
                     ClientEmail = client.ClientEmail,
                     Rate = client.Rate,
                     TermsAndService = client.TermsAndService,
-                    //special = client.special 
+                   // special = clientRecord.special != null && clientRecord.special.Value
                 };
                 vm.Add(clientView);
             }
             return vm;
+        }
+
+        internal object UpdateClient(int clientId)
+        {
+            throw new NotImplementedException();
         }
 
         public ClientViewModel GetClientById(int id)

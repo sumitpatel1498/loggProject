@@ -29,6 +29,7 @@ module DemoProjectExtension {
         TermsAndService: boolean;
         special: boolean;
 
+        infoId: number;
 
         $scope: DemoProjectExtension.IPathwayScope;
         private $mdDialog: any;
@@ -41,6 +42,16 @@ module DemoProjectExtension {
             // this.rollNumber = 3333;
             //  this.$scope.firstName = "Darshan";
             //   this.myDate = new Date();
+
+            this.infoId = Number($("#hdnInfoId").val());
+            alert(this.infoId);
+            if (this.infoId > 0) {
+                //call the info api using service.
+
+            }
+            else {
+                this.GetClientList();
+            }
             $scope.GetAllData = {
 
             }
@@ -51,11 +62,8 @@ module DemoProjectExtension {
                 TermsAndService: true,
                 clientEmail: 'sumit@gmail.com',
                 clientName: 'Sumit',
-                project: "",
+                project: '',
             };
-
-            this.GetClientList();
-            this.UpdateClient();
         }
 
         $onInit() {
@@ -66,8 +74,7 @@ module DemoProjectExtension {
        
         InsertClient = () => {
             this.dataSvc.postSkill(this.$scope.project).then((data) => {
-               
-               
+                         
                 console.log(data);
             }).catch((error) => {
                 console.log(error);
@@ -88,11 +95,8 @@ module DemoProjectExtension {
 
             })
         }
-
-        Client = () => {
-            this.dataSvc.postSkill(this.$scope.project).then((data) => {
-
-
+        DeleteClient = (ClientId) => {
+            this.dataSvc.deleteClient(ClientId).then((data) => {
                 console.log(data);
             }).catch((error) => {
                 console.log(error);
@@ -100,6 +104,16 @@ module DemoProjectExtension {
 
             })
         }
+        
+       
+        UpdateClient = (ClientId) => {
+            window.location.href = "/Student/Edit/" + ClientId;
+        }
+        //View info
+
+        //ShowInfo = (id: number) => {
+          //  window.location.href = "/student/viewInfo/" + id;
+        //}
     }
     PathwayCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];
 

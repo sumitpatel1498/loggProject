@@ -2,5 +2,13 @@
   {
     "outputFile": "Content/SCSS/StudentStyle.css",
     "inputFile": "Content/SCSS/StudentStyle.scss"
+  },
+  {
+    "outputFile": "Content/SCSS/ViewStyle.css",
+    "inputFile": "Content/SCSS/ViewStyle.scss"
+  },
+  {
+    "outputFile": "Content/SCSS/UpdateStyle.css",
+    "inputFile": "Content/SCSS/UpdateStyle.scss"
   }
 ]

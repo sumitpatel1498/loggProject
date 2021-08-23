@@ -1,15 +1,14 @@
 ﻿
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "viewInfo";
 }
 @section HeadContent {
+    @Styles.Render("~/Content/View")
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/Update")
 }
-<h2>Edit</h2>
+<h2>viewInfo</h2>
 
-<input type="hidden" id="ClientId">
-<div ng-app="studentApp" ng-controller="UpdateCtrl as sp">
+<div ng-app="studentApp" ng-controller="ViewCtrl as sp">
 
     <md-content layout-padding>
         <form name="projectForm">
@@ -38,8 +37,8 @@
                 <md-input-container flex="50">
                     <label>Project Type</label>
                     <md-select name="type" ng-model="project.project" required>
-                        <md-option value="application">Application</md-option>
-                        <md-option value="website">Website</md-option>
+                        <md-option value="app">Application</md-option>
+                        <md-option value="web">Website</md-option>
                     </md-select>
                     <div ng-messages="projectForm.type.$error">
                         <div ng-message="required">This is required.</div>
@@ -107,7 +106,7 @@
                 </div>
             </md-input-container>
             <div>
-                <md-button class="md-raised md-primary" ng-click="sp.UpdateClient(data.ClientId)" type="submit">Submit</md-button>
+                <md-button class="md-raised md-primary" ng-click="sp.UpdateClient()" type="submit">Update</md-button>
             </div>
 
             <p style="font-size:.8em; width: 100%; text-align: center;">
@@ -117,9 +116,10 @@
     </md-content>
 
 
-    @section scripts{
-        @Scripts.Render("~/bundles/Angular")
-        @Scripts.Render("~/bundles/Common")
-        @Scripts.Render("~/Bundle/UpdateClient")
-    }
+
 </div>
+@section scripts{
+    @Scripts.Render("~/bundles/Angular")
+    @Scripts.Render("~/bundles/Common")
+    @Scripts.Render("~/Bundle/ViewClient")
+}

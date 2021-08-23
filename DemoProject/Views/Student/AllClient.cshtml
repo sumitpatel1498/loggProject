@@ -55,7 +55,7 @@
                 <td>{{data.special}}</td>
                 <td>
                     <md-button  class="md-raised md-primary" ng-click="sp.ShowInfo(data.ClientId)">View</md-button>
-                    <md-button  class="md-raised md-primary" ng-click="UpdateClient()">Update</md-button>
+                    <md-button  class="md-raised md-primary" ng-click="sp.UpdateClient(data.ClientId)">Update</md-button>
                     <md-button class="md-raised md-warn" ng-click="sp.DeleteClient(data.ClientId)">Delete</md-button>
                 </td>
             </tr>

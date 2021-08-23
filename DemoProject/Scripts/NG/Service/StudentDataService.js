@@ -49,7 +49,7 @@ var DemoProjectExtension;
         StudentDataService.prototype.getInfoByid = function (id) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/student/GetClientInfo/" + id;
+            var apiUrl = "https://localhost:44397/student/GetClientById/" + id;
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -67,7 +67,7 @@ var DemoProjectExtension;
         StudentDataService.prototype.deleteClient = function (ClientId) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/student/DeleteClient" + ClientId;
+            var apiUrl = "https://localhost:44397/student/DeleteClient/" + ClientId;
             ajaxApi({
                 url: apiUrl,
                 type: 'GET',
@@ -82,13 +82,12 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
-        StudentDataService.prototype.updateSkill = function (pathway) {
+        StudentDataService.prototype.updateClient = function (ClientId) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/student/UpdateClient";
+            var apiUrl = "https://localhost:44397/student/UpdateClient/" + ClientId;
             ajaxApi({
                 url: apiUrl,
-                data: JSON.stringify(pathway),
                 type: 'POST',
                 contentType: 'application/json',
                 success: function (response) {

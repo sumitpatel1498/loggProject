@@ -47,19 +47,24 @@ var DemoProjectExtension;
                 }).finally(function () {
                 });
             };
-            _this.UpdateClient = function () {
-                _this.dataSvc.updateSkill(_this.$scope.project).then(function (data) {
-                    console.log(data);
-                }).catch(function (error) {
-                    console.log(error);
-                }).finally(function () {
-                });
-            };
-            //View info
-            _this.ShowInfo = function (id) {
-                window.location.href = "/student/viewInfo/" + id;
+            _this.UpdateClient = function (ClientId) {
+                window.location.href = "/Student/Edit/" + ClientId;
             };
             _this.$scope = $scope;
+            // this.firstName = "Sumit";
+            // this.lastName = "";
+            // this.rollNumber = 3333;
+            //  this.$scope.firstName = "Darshan";
+            //   this.myDate = new Date();
+            _this.infoId = Number($("#hdnInfoId").val());
+            alert(_this.infoId);
+            if (_this.infoId > 0) {
+                //call the info api using service.
+            }
+            else {
+                _this.GetClientList();
+            }
+            $scope.GetAllData = {};
             $scope.project = {
                 description: 'Nuclear Missile Defense System',
                 rate: 1234,
@@ -69,20 +74,6 @@ var DemoProjectExtension;
                 clientName: 'Sumit',
                 project: '',
             };
-            _this.infoId = Number($("#hdnInfoId").val());
-            if (_this.infoId > 0) {
-                //call the info api using service.
-                _this.dataSvc.getInfoByid(_this.infoId).then(function (data) {
-                    console.log("Infodata", data);
-                    $scope.project = data;
-                }).catch(function (error) {
-                }).finally(function () {
-                });
-            }
-            else {
-                _this.GetClientList();
-            }
-            $scope.GetAllData = {};
             return _this;
         }
         PathwayCtrl.prototype.$onInit = function () {

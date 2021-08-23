@@ -56,7 +56,7 @@ module DemoProjectExtension {
         getInfoByid(id:number): ng.IPromise<IStudentModel> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel>();
-            var apiUrl = "https://localhost:44397/student/GetClientInfo/"+id;
+            var apiUrl = "https://localhost:44397/student/GetClientById/"+id;
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -74,7 +74,7 @@ module DemoProjectExtension {
         deleteClient(ClientId :number): ng.IPromise<IStudentModel> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel>();
-            var apiUrl = "https://localhost:44397/student/DeleteClient" + ClientId;
+            var apiUrl = "https://localhost:44397/student/DeleteClient/"+ClientId;
             ajaxApi({
                 url: apiUrl,
                 type: 'GET',      
@@ -90,13 +90,12 @@ module DemoProjectExtension {
             });
             return deferred.promise;
         }
-        updateSkill(pathway: IStudentModel): ng.IPromise<IStudentModel> {
+        updateClient(ClientId: number): ng.IPromise<IStudentModel> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel>();
-            var apiUrl = "https://localhost:44397/student/UpdateClient";
+            var apiUrl = "https://localhost:44397/student/UpdateClient/"+ClientId;
             ajaxApi({
                 url: apiUrl,
-                data: JSON.stringify(pathway),
                 type: 'POST',
                 contentType: 'application/json',
                 success: (response: IStudentModel) => {
