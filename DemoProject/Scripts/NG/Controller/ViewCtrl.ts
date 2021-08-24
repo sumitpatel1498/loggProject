@@ -57,11 +57,33 @@ module DemoProjectExtension {
 
         private init(): void {
         }
+        ViewClient = (id: number) => {
+            console.log(id);
+            this.dataSvc.getInfoByid(id).then((data) => {
+                console.log(data);
+                this.$scope.project = data;
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+
+            })
+        }
+
+        //UpdateClient = () => {
+        //    this.dataSvc.getPathwayDetail(this.$scope.project).then((data) => {
+        //        this.showMessage("Updated Sucesfully");
+        //        console.log(data);
+        //    }).catch((error) => {
+        //        console.log(error);
+        //    }).finally(() => {
+
+        //    })
+        //}
         //View info
         ShowInfo = (id: number) => {
             this.dataSvc.getInfoByid(id).then((data) => {
                 console.log(data);
-                //window.location.href = "/student/viewInfo/" + id;
+                window.location.href = "/student/viewInfo/" + id;
             })
         }
     }

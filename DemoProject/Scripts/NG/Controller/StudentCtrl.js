@@ -24,54 +24,23 @@ var DemoProjectExtension;
             _this.dataSvc = dataSvc;
             _this.InsertClient = function () {
                 _this.dataSvc.postSkill(_this.$scope.project).then(function (data) {
+                    _this.showMessage("client added successfully");
+                    _this.$scope.project = null;
                     console.log(data);
                 }).catch(function (error) {
                     console.log(error);
                 }).finally(function () {
                 });
-            };
-            _this.GetClientList = function () {
-                _this.dataSvc.getPathwayDetail().then(function (data) {
-                    _this.clientList = data;
-                    console.log(data);
-                }).catch(function (error) {
-                    console.log(error);
-                }).finally(function () {
-                });
-            };
-            _this.DeleteClient = function (ClientId) {
-                _this.dataSvc.deleteClient(ClientId).then(function (data) {
-                    console.log(data);
-                }).catch(function (error) {
-                    console.log(error);
-                }).finally(function () {
-                });
-            };
-            _this.UpdateClient = function (ClientId) {
-                window.location.href = "/Student/Edit/" + ClientId;
             };
             _this.$scope = $scope;
-            // this.firstName = "Sumit";
-            // this.lastName = "";
-            // this.rollNumber = 3333;
-            //  this.$scope.firstName = "Darshan";
-            //   this.myDate = new Date();
-            _this.infoId = Number($("#hdnInfoId").val());
-            alert(_this.infoId);
-            if (_this.infoId > 0) {
-                //call the info api using service.
-            }
-            else {
-                _this.GetClientList();
-            }
-            $scope.GetAllData = {};
+            // this.GetClientList();
             $scope.project = {
-                description: 'Nuclear Missile Defense System',
+                description: '',
                 rate: 1234,
                 special: true,
                 TermsAndService: true,
-                clientEmail: 'sumit@gmail.com',
-                clientName: 'Sumit',
+                clientEmail: '',
+                clientName: '',
                 project: '',
             };
             return _this;

@@ -11,53 +11,26 @@ namespace DemoProject.Controllers
     public class StudentController : Controller
     {
         // GET: Student
-        ClientService service = new ClientService();
+        
         public ActionResult Index()
         {
             
             return View();
         }
-        public ActionResult Edit()
+        public ActionResult Edit(int ClientId)
         {
+            ViewBag.Id = ClientId;
             return View();
         }
         public ActionResult AllClient()
         {
             return View();
         }
-        public ActionResult viewInfo()
+        public ActionResult viewInfo(int ClientId)
         {
+            ViewBag.Id = ClientId;
             return View();
         }
-        [HttpPost]
-        public JsonResult InsertClient(ClientViewModel model)
-        {
-            var result = service.InsertClient(model);
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-        [HttpGet]
-        public JsonResult GetClientById(int id)
-        {
-            var result = service.GetClientById(id);
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-        [HttpGet]
-        public JsonResult GetClientList()
-        {
-            var result = service.GetClientList();
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-        [HttpGet]
-        public JsonResult UpdateClient(int ClientId)
-        {
-            var result = service.UpdateClient(ClientId);
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-        [HttpDelete]
-        public JsonResult DeleteClient(int ClientId)
-        {
-            var result = service.DeleteClient(ClientId);
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
+        
     }
 }

@@ -31,7 +31,8 @@ namespace DemoProject.Service
         }
         public List<ClientViewModel> GetClientList()
         {
-            var clientRecord = entities.Clients.ToList();
+            //var clientRecord = entities.Clients.ToList();
+            var clientRecord = entities.Clients.OrderByDescending(s => s.ClientId);
             List<ClientViewModel> vm = new List<ClientViewModel>();
             foreach (var client in clientRecord)
             {
@@ -44,18 +45,14 @@ namespace DemoProject.Service
                     ClientEmail = client.ClientEmail,
                     Rate = client.Rate,
                     TermsAndService = client.TermsAndService,
-                   // special = clientRecord.special != null && clientRecord.special.Value
+                    special = client.special != null && client.special.Value
                 };
                 vm.Add(clientView);
             }
             return vm;
         }
 
-        internal object UpdateClient(int clientId)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public ClientViewModel GetClientById(int id)
         {
             var clientRecord = entities.Clients.Where(s => s.ClientId == id).FirstOrDefault();
@@ -84,16 +81,22 @@ namespace DemoProject.Service
             var clientRecord = entities.Clients.Where(s => s.ClientId == data.ClientId).FirstOrDefault();
             if (clientRecord != null)
             {
+                clientRecord.ClientId = data.ClientId;
                 clientRecord.Description = data.Description;
                 clientRecord.ClientName = data.ClientName;
                 clientRecord.Project = data.Project;
                 clientRecord.ClientEmail = data.ClientEmail;
                 clientRecord.Rate = data.Rate;
                 clientRecord.TermsAndService = data.TermsAndService;
-                clientRecord.special = data.special;
-            }
+                // clientRecord.special = data.special != null && data.special.Value;
+           
             entities.Entry<Client>(clientRecord).State = System.Data.Entity.EntityState.Modified;
             return entities.SaveChanges();
+        }
+            else
+            {
+                return -1;
+            }
         }
         public int DeleteClient(int ClientId)
         {

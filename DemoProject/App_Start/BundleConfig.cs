@@ -43,12 +43,12 @@ namespace DemoProject
                       "~/Scripts/Angular-material.js"));
 
             bundles.Add(new StyleBundle("~/Content/Student").Include(
-                     "~/Content/SCSS/StudentStyle.css"                     
+                     "~/Content/SCSS/StudentStyle.css"
                                           ));
-           
+
             bundles.Add(new StyleBundle("~/Content/View").Include(
                      "~/Content/SCSS/ViewStyle.css"
-                     
+
                      ));
 
             bundles.Add(new StyleBundle("~/Content/Update").Include(
@@ -57,8 +57,12 @@ namespace DemoProject
 
             bundles.Add(new ScriptBundle("~/Bundle/Student").Include(
                      "~/Scripts/NG/Service/StudentDataService.js",
-                     "~/Scripts/NG/Controller/StudentCtrl.js"
-                     ));
+                     "~/Scripts/NG/Controller/StudentCtrl.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/StudentList").Include(
+         "~/Scripts/NG/Service/StudentDataService.js",
+         "~/Scripts/NG/Controller/ListCtrl.js"
+         ));
 
             bundles.Add(new ScriptBundle("~/Bundle/ViewClient").Include(
                      "~/Scripts/NG/Service/StudentDataService.js",
@@ -67,8 +71,7 @@ namespace DemoProject
 
             bundles.Add(new ScriptBundle("~/Bundle/UpdateClient").Include(
                      "~/Scripts/NG/Service/StudentDataService.js",
-                     "~/Scripts/NG/Controller/UpdateCtrl.js"
-                     ));
+                     "~/Scripts/NG/Controller/UpdateCtrl.js"));
 
             BundleTable.EnableOptimizations = false;
         }

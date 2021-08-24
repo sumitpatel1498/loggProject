@@ -22,11 +22,30 @@ var DemoProjectExtension;
         function ViewCtrl($scope, dataSvc, $timeout, $mdDialog, $mdSelect, $mdToast) {
             var _this = _super.call(this, $scope, $mdToast) || this;
             _this.dataSvc = dataSvc;
+            _this.ViewClient = function (id) {
+                console.log(id);
+                _this.dataSvc.getInfoByid(id).then(function (data) {
+                    console.log(data);
+                    _this.$scope.project = data;
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
+            };
+            //UpdateClient = () => {
+            //    this.dataSvc.getPathwayDetail(this.$scope.project).then((data) => {
+            //        this.showMessage("Updated Sucesfully");
+            //        console.log(data);
+            //    }).catch((error) => {
+            //        console.log(error);
+            //    }).finally(() => {
+            //    })
+            //}
             //View info
             _this.ShowInfo = function (id) {
                 _this.dataSvc.getInfoByid(id).then(function (data) {
                     console.log(data);
-                    //window.location.href = "/student/viewInfo/" + id;
+                    window.location.href = "/student/viewInfo/" + id;
                 });
             };
             _this.$scope = $scope;

@@ -8,8 +8,9 @@
 <br />
 <br />
 <br />
+@Html.ActionLink("Add New Client", "Index")
 
-<div ng-app="studentApp" ng-controller="PathwayCtrl as sp" ng-cloak>
+<div ng-app="studentApp" ng-controller="ListCtrl as sp" ng-cloak>
     <div>
         <table class="table table-bordered table-hover table-responsive">
             <tr>
@@ -51,11 +52,20 @@
                 <td>{{data.Project}}</td>
                 <td>{{data.ClientEmail}}</td>
                 <td>{{data.Rate}}</td>
-                <td>{{data.TermsAndService}}</td>
-                <td>{{data.special}}</td>
                 <td>
-                    <md-button  class="md-raised md-primary" ng-click="sp.ShowInfo(data.ClientId)">View</md-button>
-                    <md-button  class="md-raised md-primary" ng-click="sp.UpdateClient(data.ClientId)">Update</md-button>
+                    <md-checkbox ng-model="data.TermsAndService" ng-disabled="true">
+                        
+                    </md-checkbox>
+                </td>
+                <td>
+                    <md-checkbox ng-model="data.special" ng-disabled="true">
+
+                    </md-checkbox>
+                </td>
+               
+                <td>
+                    <md-button class="md-raised md-primary" ng-click="sp.ShowInfo(data.ClientId)">View</md-button>
+                    <md-button class="md-raised md-primary" ng-click="sp.UpdateClient(data.ClientId)">Update</md-button>
                     <md-button class="md-raised md-warn" ng-click="sp.DeleteClient(data.ClientId)">Delete</md-button>
                 </td>
             </tr>
@@ -66,7 +76,8 @@
     @section scripts{
         @Scripts.Render("~/bundles/Angular")
         @Scripts.Render("~/bundles/Common")
-        @Scripts.Render("~/Bundle/Student")
+        @Scripts.Render("~/bundles/StudentList")
+
     }
 </div>
 

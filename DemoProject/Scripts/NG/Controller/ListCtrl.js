@@ -17,58 +17,66 @@ var __extends = (this && this.__extends) || (function () {
 /// <reference path="../../typings/jQuery/jquery.d.ts" />
 var DemoProjectExtension;
 (function (DemoProjectExtension) {
-    var UpdateCtrl = /** @class */ (function (_super) {
-        __extends(UpdateCtrl, _super);
-        function UpdateCtrl($scope, dataSvc, $timeout, $mdDialog, $mdSelect, $mdToast) {
+    var ListCtrl = /** @class */ (function (_super) {
+        __extends(ListCtrl, _super);
+        function ListCtrl($scope, dataSvc, $timeout, $mdDialog, $mdSelect, $mdToast) {
             var _this = _super.call(this, $scope, $mdToast) || this;
             _this.dataSvc = dataSvc;
+            _this.getClientList = function () {
+                _this.dataSvc.getPathwayDetail().then(function (data) {
+                    _this.clientList = data;
+                    console.log(data);
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
+            };
             _this.ViewClient = function (id) {
+                _this.ShowInfo(id);
                 console.log(id);
                 _this.dataSvc.getInfoByid(id).then(function (data) {
                     console.log(data);
-                    _this.$scope.project = data;
                 }).catch(function (error) {
                     console.log(error);
                 }).finally(function () {
                 });
             };
-            _this.UpdateClient = function () {
-                _this.dataSvc.updateClient(_this.$scope.project).then(function (data) {
-                    _this.showMessage("Updated Sucesfully");
+            _this.UpdateClient = function (id) {
+                _this.ShowInfo(id);
+                _this.dataSvc.updateClient(id).then(function (data) {
                     console.log(data);
                 }).catch(function (error) {
                     console.log(error);
                 }).finally(function () {
                 });
             };
-            //View info
+            _this.DeleteClient = function (ClientId) {
+                _this.dataSvc.deleteClient(ClientId).then(function (data) {
+                    _this.showMessage("Deleted Successfully");
+                    console.log(data);
+                    _this.getClientList();
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
+            };
             _this.ShowInfo = function (id) {
-                _this.dataSvc.getInfoByid(id).then(function (data) {
-                    console.log(data);
-                    _this.$scope.project = data;
-                });
+                window.location.href = "/Student/Edit?ClientId=" + id;
             };
             _this.$scope = $scope;
-            // this.firstName = "Sumit";
-            // this.lastName = "";
-            // this.rollNumber = 3333;
-            //  this.$scope.firstName = "Darshan";
-            //   this.myDate = new Date();
-            _this.infoId = Number($("#hiddenid").val());
-            _this.ShowInfo(_this.infoId);
-            $scope.GetAllData = {};
+            _this.getClientList();
             return _this;
         }
-        UpdateCtrl.prototype.$onInit = function () {
+        ListCtrl.prototype.$onInit = function () {
         };
-        UpdateCtrl.prototype.init = function () {
+        ListCtrl.prototype.init = function () {
         };
-        return UpdateCtrl;
+        return ListCtrl;
     }(wp.angularBase.BaseCtrl));
-    DemoProjectExtension.UpdateCtrl = UpdateCtrl;
-    UpdateCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];
+    DemoProjectExtension.ListCtrl = ListCtrl;
+    ListCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];
     var app = angular.module("studentApp", ['ngMaterial', 'ngMessages', 'ngSanitize']);
     app.factory('StudentDataService', ['$http', '$q', DemoProjectExtension.StudentDataService.StudentDataServiceFactory]);
-    app.controller('UpdateCtrl', UpdateCtrl);
+    app.controller('ListCtrl', ListCtrl);
 })(DemoProjectExtension || (DemoProjectExtension = {}));
-//# sourceMappingURL=UpdateCtrl.js.map
+//# sourceMappingURL=ListCtrl.js.map

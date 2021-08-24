@@ -11,7 +11,7 @@ var DemoProjectExtension;
         StudentDataService.prototype.postSkill = function (pathway) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/student/InsertClient";
+            var apiUrl = "https://localhost:44397/studentapi/InsertClient";
             ajaxApi({
                 url: apiUrl,
                 data: JSON.stringify(pathway),
@@ -31,7 +31,7 @@ var DemoProjectExtension;
         StudentDataService.prototype.getPathwayDetail = function () {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/student/GetClientList";
+            var apiUrl = "https://localhost:44397/studentapi/GetClientList";
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -49,7 +49,7 @@ var DemoProjectExtension;
         StudentDataService.prototype.getInfoByid = function (id) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/student/GetClientById/" + id;
+            var apiUrl = "https://localhost:44397/studentapi/GetClientById/" + id;
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -67,7 +67,7 @@ var DemoProjectExtension;
         StudentDataService.prototype.deleteClient = function (ClientId) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/student/DeleteClient/" + ClientId;
+            var apiUrl = "https://localhost:44397/studentapi/RemoveClient?ClientId=" + ClientId;
             ajaxApi({
                 url: apiUrl,
                 type: 'GET',
@@ -82,13 +82,14 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
-        StudentDataService.prototype.updateClient = function (ClientId) {
+        StudentDataService.prototype.updateClient = function (pathway) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/student/UpdateClient/" + ClientId;
+            var apiUrl = "https://localhost:44397/studentapi/UpdateClient/";
             ajaxApi({
                 url: apiUrl,
                 type: 'POST',
+                data: JSON.stringify(pathway),
                 contentType: 'application/json',
                 success: function (response) {
                     deferred.resolve(response);

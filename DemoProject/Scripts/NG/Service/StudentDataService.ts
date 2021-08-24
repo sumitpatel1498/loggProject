@@ -16,7 +16,7 @@ module DemoProjectExtension {
         postSkill(pathway: IStudentModel): ng.IPromise<IStudentModel> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel>();
-            var apiUrl = "https://localhost:44397/student/InsertClient";
+            var apiUrl = "https://localhost:44397/studentapi/InsertClient";
             ajaxApi({
                 url: apiUrl,
                 data: JSON.stringify(pathway),
@@ -38,7 +38,7 @@ module DemoProjectExtension {
         getPathwayDetail(): ng.IPromise<IStudentModel[]> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel[]>();
-            var apiUrl = "https://localhost:44397/student/GetClientList";
+            var apiUrl = "https://localhost:44397/studentapi/GetClientList";
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -56,7 +56,7 @@ module DemoProjectExtension {
         getInfoByid(id:number): ng.IPromise<IStudentModel> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel>();
-            var apiUrl = "https://localhost:44397/student/GetClientById/"+id;
+            var apiUrl = "https://localhost:44397/studentapi/GetClientById/"+id;
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -74,7 +74,7 @@ module DemoProjectExtension {
         deleteClient(ClientId :number): ng.IPromise<IStudentModel> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel>();
-            var apiUrl = "https://localhost:44397/student/DeleteClient/"+ClientId;
+            var apiUrl = "https://localhost:44397/studentapi/RemoveClient?ClientId="+ClientId;
             ajaxApi({
                 url: apiUrl,
                 type: 'GET',      
@@ -90,13 +90,14 @@ module DemoProjectExtension {
             });
             return deferred.promise;
         }
-        updateClient(ClientId: number): ng.IPromise<IStudentModel> {
+        updateClient(pathway: IStudentModel): ng.IPromise<IStudentModel> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel>();
-            var apiUrl = "https://localhost:44397/student/UpdateClient/"+ClientId;
+            var apiUrl = "https://localhost:44397/studentapi/UpdateClient/";
             ajaxApi({
                 url: apiUrl,
                 type: 'POST',
+                data: JSON.stringify(pathway),
                 contentType: 'application/json',
                 success: (response: IStudentModel) => {
                     deferred.resolve(response);

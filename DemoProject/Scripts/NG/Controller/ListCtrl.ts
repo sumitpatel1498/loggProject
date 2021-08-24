@@ -13,14 +13,14 @@ module DemoProjectExtension {
         special: boolean;
 
         project: IStudentModel
-        
+
     }
-    export class UpdateCtrl extends wp.angularBase.BaseCtrl implements angular.IController {
+    export class ListCtrl extends wp.angularBase.BaseCtrl implements angular.IController {
         // firstName: String;
         // lastName: String;
         // rollNumber: Number;
         // myDate: any;
-
+        ClientId: number;
         Description: String;
         ClientName: String;
         ClientEmail: String;
@@ -30,6 +30,7 @@ module DemoProjectExtension {
         special: boolean;
 
         infoId: number;
+        project: IStudentModel;
 
         $scope: DemoProjectExtension.IPathwayScope;
         private $mdDialog: any;
@@ -37,19 +38,7 @@ module DemoProjectExtension {
 
             super($scope, $mdToast);
             this.$scope = $scope;
-            // this.firstName = "Sumit";
-            // this.lastName = "";
-            // this.rollNumber = 3333;
-            //  this.$scope.firstName = "Darshan";
-            //   this.myDate = new Date();
-
-            this.infoId = Number($("#hiddenid").val());
-            this.ShowInfo(this.infoId);
-           
-            $scope.GetAllData = {
-
-            }
-            
+            this.getClientList();
         }
 
         $onInit() {
@@ -57,11 +46,24 @@ module DemoProjectExtension {
 
         private init(): void {
         }
-        ViewClient = (id: number) => {
+
+        clientList: IStudentModel[];
+        getClientList = () => {
+            this.dataSvc.getPathwayDetail().then((data) => {
+                this.clientList = data;
+                console.log(data);
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+
+            })
+        }
+
+        ViewClient = (id) => {
+            this.ShowInfo(id);
             console.log(id);
             this.dataSvc.getInfoByid(id).then((data) => {
                 console.log(data);
-                this.$scope.project = data;
             }).catch((error) => {
                 console.log(error);
             }).finally(() => {
@@ -69,9 +71,9 @@ module DemoProjectExtension {
             })
         }
 
-        UpdateClient = () => {
-            this.dataSvc.updateClient(this.$scope.project).then((data) => {
-                this.showMessage("Updated Sucesfully");
+        UpdateClient = (id) => {
+            this.ShowInfo(id);
+            this.dataSvc.updateClient(id).then((data) => {
                 console.log(data);
             }).catch((error) => {
                 console.log(error);
@@ -79,17 +81,48 @@ module DemoProjectExtension {
 
             })
         }
-        //View info
+
+        
+
+         
+        DeleteClient = (ClientId) => {
+            this.dataSvc.deleteClient(ClientId).then((data) => {
+                this.showMessage("Deleted Successfully");
+                console.log(data);
+                this.getClientList();
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+
+            })
+        }
+
         ShowInfo = (id: number) => {
-            this.dataSvc.getInfoByid(id).then((data) => {
-                console.log(data);
-                this.$scope.project = data;
-            })
+            window.location.href = "/Student/Edit?ClientId=" + id;
         }
+       
+
+        ////View info
+        
+
+        //getClientList = () => {
+        //    this.dataSvc.updateClient(this.ClientId).then((data) => {
+        //        this.$scope.project = data;
+        //    }).catch((error) => {
+
+        //    }).finally(() => {
+
+        //    })
+        //}
+        //UpdateInfo = (ClientId: number) => {
+
+        //    window.location.href = "/Student/Edit/" + ClientId;
+        //}
+
     }
-    UpdateCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];
+    ListCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];
 
     var app = angular.module("studentApp", ['ngMaterial', 'ngMessages', 'ngSanitize']);
     app.factory('StudentDataService', ['$http', '$q', StudentDataService.StudentDataServiceFactory]);
-    app.controller('UpdateCtrl', UpdateCtrl);
+    app.controller('ListCtrl', ListCtrl);
 }
