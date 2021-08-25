@@ -88,7 +88,7 @@ namespace DemoProject.Service
                 clientRecord.ClientEmail = data.ClientEmail;
                 clientRecord.Rate = data.Rate;
                 clientRecord.TermsAndService = data.TermsAndService;
-                // clientRecord.special = data.special != null && data.special.Value;
+                //clientRecord.special = data.special != null && data.special.Value;
            
             entities.Entry<Client>(clientRecord).State = System.Data.Entity.EntityState.Modified;
             return entities.SaveChanges();

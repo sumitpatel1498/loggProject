@@ -250,7 +250,9 @@ html, body {
   letter-spacing: 0.020em; }
 
 .md-button {
-  letter-spacing: 0.010em; }
+  letter-spacing: 0.010em;
+  text-transform: none;
+}
 
 /************
  * Defaults
@@ -698,7 +700,7 @@ button.md-button::-moz-focus-inner {
   color: currentColor;
   white-space: nowrap;
   /* Uppercase text content */
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 500;
   font-size: 14px;
   font-style: inherit;
@@ -1031,7 +1033,9 @@ md-checkbox {
     display: inline-block;
     width: 20px;
     height: 20px;
+    align-items:center;
     left: 0;
+   
     right: auto; }
     [dir=rtl] md-checkbox .md-container {
       left: auto; }

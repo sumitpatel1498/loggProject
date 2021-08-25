@@ -9,8 +9,7 @@ using System.Web.Mvc;
 namespace DemoProject.Controllers
 {
     public class StudentApiController : Controller
-    {
-        // GET: StudentApi
+    {       
         ClientService service = new ClientService();
         public ActionResult Index()
         {

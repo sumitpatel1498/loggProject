@@ -15,11 +15,7 @@ module DemoProjectExtension {
         project: IStudentModel
         
     }
-    export class ViewCtrl extends wp.angularBase.BaseCtrl implements angular.IController {
-        // firstName: String;
-        // lastName: String;
-        // rollNumber: Number;
-        // myDate: any;
+    export class ViewCtrl extends wp.angularBase.BaseCtrl implements angular.IController {       
 
         Description: String;
         ClientName: String;
@@ -37,12 +33,7 @@ module DemoProjectExtension {
 
             super($scope, $mdToast);
             this.$scope = $scope;
-            // this.firstName = "Sumit";
-            // this.lastName = "";
-            // this.rollNumber = 3333;
-            //  this.$scope.firstName = "Darshan";
-            //   this.myDate = new Date();
-
+            
             this.infoId = Number($("#hdnInfoId").val());
             this.ShowInfo(this.infoId);
            
@@ -69,17 +60,6 @@ module DemoProjectExtension {
             })
         }
 
-        //UpdateClient = () => {
-        //    this.dataSvc.getPathwayDetail(this.$scope.project).then((data) => {
-        //        this.showMessage("Updated Sucesfully");
-        //        console.log(data);
-        //    }).catch((error) => {
-        //        console.log(error);
-        //    }).finally(() => {
-
-        //    })
-        //}
-        //View info
         ShowInfo = (id: number) => {
             this.dataSvc.getInfoByid(id).then((data) => {
                 console.log(data);

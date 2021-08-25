@@ -17,43 +17,42 @@ var __extends = (this && this.__extends) || (function () {
 /// <reference path="../../typings/jQuery/jquery.d.ts" />
 var DemoProjectExtension;
 (function (DemoProjectExtension) {
-    var ViewCtrl = /** @class */ (function (_super) {
-        __extends(ViewCtrl, _super);
-        function ViewCtrl($scope, dataSvc, $timeout, $mdDialog, $mdSelect, $mdToast) {
+    var GridCtrl = /** @class */ (function (_super) {
+        __extends(GridCtrl, _super);
+        function GridCtrl($scope, dataSvc, $timeout, $mdDialog, $mdSelect, $mdToast) {
             var _this = _super.call(this, $scope, $mdToast) || this;
             _this.dataSvc = dataSvc;
-            _this.ViewClient = function (id) {
-                console.log(id);
-                _this.dataSvc.getInfoByid(id).then(function (data) {
+            _this.getClientList = function () {
+                _this.dataSvc.getPathwayDetail().then(function (data) {
+                    _this.clientList = data;
                     console.log(data);
-                    _this.$scope.project = data;
                 }).catch(function (error) {
                     console.log(error);
                 }).finally(function () {
                 });
             };
-            _this.ShowInfo = function (id) {
-                _this.dataSvc.getInfoByid(id).then(function (data) {
-                    console.log(data);
-                    window.location.href = "/student/viewInfo/" + id;
-                });
+            _this.dataGrid = function () {
+                _this.$scope.getClientList = {
+                    dataSource: DemoProjectExtension.StudentDataService,
+                    keyExpr: "ID",
+                    columns: ["Client Id", "Description", "Client Name", "Project", "Client Email", "Rate", "Terms And Conditons", "Special"],
+                    showBorders: true
+                };
             };
             _this.$scope = $scope;
-            _this.infoId = Number($("#hdnInfoId").val());
-            _this.ShowInfo(_this.infoId);
-            $scope.GetAllData = {};
+            _this.getClientList();
             return _this;
         }
-        ViewCtrl.prototype.$onInit = function () {
+        GridCtrl.prototype.$onInit = function () {
         };
-        ViewCtrl.prototype.init = function () {
+        GridCtrl.prototype.init = function () {
         };
-        return ViewCtrl;
+        return GridCtrl;
     }(wp.angularBase.BaseCtrl));
-    DemoProjectExtension.ViewCtrl = ViewCtrl;
-    ViewCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];
-    var app = angular.module("studentApp", ['ngMaterial', 'ngMessages', 'ngSanitize']);
+    DemoProjectExtension.GridCtrl = GridCtrl;
+    GridCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];
+    var app = angular.module("DemoApp", ['ngMaterial', 'ngMessages', 'ngSanitize']);
     app.factory('StudentDataService', ['$http', '$q', DemoProjectExtension.StudentDataService.StudentDataServiceFactory]);
-    app.controller('ViewCtrl', ViewCtrl);
+    app.controller('GridCtrl', GridCtrl);
 })(DemoProjectExtension || (DemoProjectExtension = {}));
-//# sourceMappingURL=ViewCtrl.js.map
+//# sourceMappingURL=GridCtrl.js.map

@@ -12,3 +12,13 @@
 .buttondemoBasicUsage section .md-button {
   margin-top: 16px;
   margin-bottom: 16px; }
+
+.md-button {
+  text-transform: none; }
+
+body .buttontext {
+  text-transform: none; }
+
+body td {
+  align-items: center;
+  text-align: center; }

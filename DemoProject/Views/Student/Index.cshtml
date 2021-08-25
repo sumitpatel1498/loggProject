@@ -6,7 +6,9 @@
     @Styles.Render("~/Content/Student")
     }
 
-
+<br />
+<br />
+<br />
 <div ng-app="studentApp" ng-controller="PathwayCtrl as sp">
     <md-content layout-padding>
         <form name="projectForm">
@@ -105,20 +107,20 @@
             </md-input-container>
             <div>
                 <md-button class="md-raised md-primary" ng-click="sp.InsertClient()" type="submit">Save</md-button>
-                
+
             </div>
 
             <p style="font-size:.8em; width: 100%; text-align: center;">
                 Make sure to include <a href="https://docs.angularjs.org/api/ngMessages" target="_blank">ngMessages</a> module when using ng-message markup.
             </p>
-            </form>
-        </md-content>
+        </form>
+    </md-content>
+    @Html.ActionLink("Back to list", "AllClient")
 
+    @section scripts{
+        @Scripts.Render("~/bundles/Angular")
+        @Scripts.Render("~/bundles/Common")
+        @Scripts.Render("~/Bundle/Student")
 
-            @section scripts{
-                @Scripts.Render("~/bundles/Angular")
-                @Scripts.Render("~/bundles/Common")
-                @Scripts.Render("~/Bundle/Student")
-
-            }
+    }
 </div>

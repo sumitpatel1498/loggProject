@@ -51,18 +51,29 @@ var DemoProjectExtension;
                 });
             };
             _this.DeleteClient = function (ClientId) {
-                _this.dataSvc.deleteClient(ClientId).then(function (data) {
-                    _this.showMessage("Deleted Successfully");
-                    console.log(data);
-                    _this.getClientList();
-                }).catch(function (error) {
-                    console.log(error);
-                }).finally(function () {
+                var confirm = _this.$mdDialog.confirm()
+                    .title('Are you sure you want to delete')
+                    .textContent('If you delete you will lose all your data permanently')
+                    .ariaLabel('')
+                    .targetEvent(null)
+                    .ok('Yes Delete')
+                    .cancel('Cancel');
+                _this.$mdDialog.show(confirm).then(function () {
+                    _this.dataSvc.deleteClient(ClientId).then(function (data) {
+                        _this.showMessage("Deleted Successfully");
+                        console.log(data);
+                        _this.getClientList();
+                    }).catch(function (error) {
+                        console.log(error);
+                    }).finally(function () {
+                    });
+                }, function () {
                 });
             };
             _this.ShowInfo = function (id) {
                 window.location.href = "/Student/Edit?ClientId=" + id;
             };
+            _this.$mdDialog = $mdDialog;
             _this.$scope = $scope;
             _this.getClientList();
             return _this;

@@ -41,7 +41,6 @@ var DemoProjectExtension;
                 }).finally(function () {
                 });
             };
-            //View info
             _this.ShowInfo = function (id) {
                 _this.dataSvc.getInfoByid(id).then(function (data) {
                     console.log(data);
@@ -49,11 +48,6 @@ var DemoProjectExtension;
                 });
             };
             _this.$scope = $scope;
-            // this.firstName = "Sumit";
-            // this.lastName = "";
-            // this.rollNumber = 3333;
-            //  this.$scope.firstName = "Darshan";
-            //   this.myDate = new Date();
             _this.infoId = Number($("#hiddenid").val());
             _this.ShowInfo(_this.infoId);
             $scope.GetAllData = {};

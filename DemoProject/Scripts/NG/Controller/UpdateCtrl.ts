@@ -12,14 +12,9 @@ module DemoProjectExtension {
         TermsAndService: boolean;
         special: boolean;
 
-        project: IStudentModel
-        
+        project: IStudentModel        
     }
-    export class UpdateCtrl extends wp.angularBase.BaseCtrl implements angular.IController {
-        // firstName: String;
-        // lastName: String;
-        // rollNumber: Number;
-        // myDate: any;
+    export class UpdateCtrl extends wp.angularBase.BaseCtrl implements angular.IController {        
 
         Description: String;
         ClientName: String;
@@ -28,7 +23,6 @@ module DemoProjectExtension {
         Rate: String;
         TermsAndService: boolean;
         special: boolean;
-
         infoId: number;
 
         $scope: DemoProjectExtension.IPathwayScope;
@@ -36,20 +30,14 @@ module DemoProjectExtension {
         constructor($scope: DemoProjectExtension.IPathwayScope, private dataSvc: StudentDataService, $timeout, $mdDialog: any, $mdSelect: any, $mdToast: any) {
 
             super($scope, $mdToast);
-            this.$scope = $scope;
-            // this.firstName = "Sumit";
-            // this.lastName = "";
-            // this.rollNumber = 3333;
-            //  this.$scope.firstName = "Darshan";
-            //   this.myDate = new Date();
+            this.$scope = $scope;            
 
             this.infoId = Number($("#hiddenid").val());
             this.ShowInfo(this.infoId);
            
             $scope.GetAllData = {
 
-            }
-            
+            }            
         }
 
         $onInit() {
@@ -79,7 +67,7 @@ module DemoProjectExtension {
 
             })
         }
-        //View info
+        
         ShowInfo = (id: number) => {
             this.dataSvc.getInfoByid(id).then((data) => {
                 console.log(data);

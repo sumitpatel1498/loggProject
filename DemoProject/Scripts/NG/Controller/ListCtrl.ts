@@ -13,13 +13,9 @@ module DemoProjectExtension {
         special: boolean;
 
         project: IStudentModel
-
     }
     export class ListCtrl extends wp.angularBase.BaseCtrl implements angular.IController {
-        // firstName: String;
-        // lastName: String;
-        // rollNumber: Number;
-        // myDate: any;
+        
         ClientId: number;
         Description: String;
         ClientName: String;
@@ -35,8 +31,9 @@ module DemoProjectExtension {
         $scope: DemoProjectExtension.IPathwayScope;
         private $mdDialog: any;
         constructor($scope: DemoProjectExtension.IPathwayScope, private dataSvc: StudentDataService, $timeout, $mdDialog: any, $mdSelect: any, $mdToast: any) {
-
+            
             super($scope, $mdToast);
+            this.$mdDialog = $mdDialog;
             this.$scope = $scope;
             this.getClientList();
         }
@@ -82,44 +79,33 @@ module DemoProjectExtension {
             })
         }
 
-        
-
-         
         DeleteClient = (ClientId) => {
-            this.dataSvc.deleteClient(ClientId).then((data) => {
-                this.showMessage("Deleted Successfully");
-                console.log(data);
-                this.getClientList();
-            }).catch((error) => {
-                console.log(error);
-            }).finally(() => {
+            var confirm = this.$mdDialog.confirm()
+                .title('Are you sure you want to delete')
+                .textContent('If you delete you will lose all your data permanently')
+                .ariaLabel('')
+                .targetEvent(null)                               
+                .ok('Yes Delete')
+                .cancel('Cancel');
+            this.$mdDialog.show(confirm).then(() => {
+                this.dataSvc.deleteClient(ClientId).then((data) => {
+                    this.showMessage("Deleted Successfully");
+                    console.log(data);
+                    this.getClientList();
 
-            })
+                }).catch((error) => {
+                    console.log(error);
+                }).finally(() => {
+
+                })
+            },() => {
+            });
         }
 
         ShowInfo = (id: number) => {
             window.location.href = "/Student/Edit?ClientId=" + id;
         }
-       
-
-        ////View info
-        
-
-        //getClientList = () => {
-        //    this.dataSvc.updateClient(this.ClientId).then((data) => {
-        //        this.$scope.project = data;
-        //    }).catch((error) => {
-
-        //    }).finally(() => {
-
-        //    })
-        //}
-        //UpdateInfo = (ClientId: number) => {
-
-        //    window.location.href = "/Student/Edit/" + ClientId;
-        //}
-
-    }
+}
     ListCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];
 
     var app = angular.module("studentApp", ['ngMaterial', 'ngMessages', 'ngSanitize']);

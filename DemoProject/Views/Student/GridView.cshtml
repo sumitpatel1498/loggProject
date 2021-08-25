@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "GridView";
+}
+
+@section HeadContent {
+   
+    @Styles.Render("~/Content/css")
+}
+<br />
+<br />
+<br />
+<h2>GridView</h2>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+    <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.5/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.5/css/dx.light.css" />
+    <script>window.angular || document.write(decodeURIComponent('%3Cscript src="js/angular.min.js"%3E%3C/script%3E'))</script>
+    <script src="https://cdn3.devexpress.com/jslib/21.1.5/js/dx.all.js"></script>
+
+
+</head>
+<body ng-app="studentApp">
+    <div class="demo-container" ng-controller="GridCtrl">
+        <div id="gridContainer" dx-data-grid="dataGridOptions"></div>
+    </div>
+</body>
+
+@section scripts{
+    @Scripts.Render("~/bundles/Angular")
+    @Scripts.Render("~/bundles/Common")
+    @Scripts.Render("~/Bundle/GridView")
+} 
+</html>

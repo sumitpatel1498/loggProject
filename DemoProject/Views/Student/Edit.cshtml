@@ -8,9 +8,9 @@
 }
 <h2>Edit</h2>
 
-<input Id="hiddenid" value="@ViewBag.Id" />
+<input hidden Id="hiddenid" value="@ViewBag.Id" />
 <div ng-app="studentApp" ng-controller="UpdateCtrl as sp">
-    
+
     <md-content layout-padding>
         <form name="projectForm">
             <br />
@@ -115,7 +115,7 @@
             </p>
         </form>
     </md-content>
-
+    @Html.ActionLink("Back to list", "AllClient")
 
     @section scripts{
         @Scripts.Render("~/bundles/Angular")

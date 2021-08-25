@@ -24,7 +24,7 @@ var DemoProjectExtension;
             _this.dataSvc = dataSvc;
             _this.InsertClient = function () {
                 _this.dataSvc.postSkill(_this.$scope.project).then(function (data) {
-                    _this.showMessage("client added successfully");
+                    _this.showMessage("Client Added Successfully");
                     _this.$scope.project = null;
                     console.log(data);
                 }).catch(function (error) {
@@ -33,7 +33,6 @@ var DemoProjectExtension;
                 });
             };
             _this.$scope = $scope;
-            // this.GetClientList();
             $scope.project = {
                 description: '',
                 rate: 1234,

@@ -26,9 +26,8 @@ namespace DemoProject.Controllers
         {
             return View();
         }
-        public ActionResult viewInfo(int ClientId)
+        public ActionResult GridView()
         {
-            ViewBag.Id = ClientId;
             return View();
         }
         
