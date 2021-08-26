@@ -4,35 +4,33 @@
 }
 
 @section HeadContent {
-   
+    @Styles.Render("~/Content/Student")
     @Styles.Render("~/Content/css")
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.5/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.5/css/dx.light.css" />
+    <script src="https://cdn3.devexpress.com/jslib/21.1.5/js/dx.all.js"></script>
 }
 <br />
 <br />
 <br />
 <h2>GridView</h2>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
 
+<div ng-app="studentApp">
+    <div ng-controller="GridCtrl">
+        
+        <div class="demo-container">
+            <div id="buttonContainer"></div> 
 
-    <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.5/css/dx.common.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.5/css/dx.light.css" />
-    <script>window.angular || document.write(decodeURIComponent('%3Cscript src="js/angular.min.js"%3E%3C/script%3E'))</script>
-    <script src="https://cdn3.devexpress.com/jslib/21.1.5/js/dx.all.js"></script>
+            <div id="gridContainer"></div>
 
+        </div>
+        @section scripts{
+            @Scripts.Render("~/bundles/Angular")
+            @Scripts.Render("~/bundles/Common")
+            @Scripts.Render("~/Bundle/GridView")
+        }
 
-</head>
-<body ng-app="studentApp">
-    <div class="demo-container" ng-controller="GridCtrl">
-        <div id="gridContainer" dx-data-grid="dataGridOptions"></div>
     </div>
-</body>
 
-@section scripts{
-    @Scripts.Render("~/bundles/Angular")
-    @Scripts.Render("~/bundles/Common")
-    @Scripts.Render("~/Bundle/GridView")
-} 
-</html>
+</div>

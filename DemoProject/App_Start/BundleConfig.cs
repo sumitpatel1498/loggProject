@@ -72,7 +72,7 @@ namespace DemoProject
             bundles.Add(new ScriptBundle("~/Bundle/GridView").Include(
                      "~/Scripts/NG/Service/StudentDataService.js",
                      "~/Scripts/NG/Controller/GridCtrl.js"));
-
+ 
             BundleTable.EnableOptimizations = false;
         }
     }

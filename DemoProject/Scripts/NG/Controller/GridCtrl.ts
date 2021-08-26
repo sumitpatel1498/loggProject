@@ -1,11 +1,32 @@
 ﻿/// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/jQuery/jquery.d.ts" />
+/// <reference path="../../typings/devexpress-web/devexpress-web.d.ts" />
 module DemoProjectExtension {
     export interface IPathwayScope extends ng.IScope {
         loading: boolean;
-        loadingTask: boolean;       
+        loadingTask: boolean;
+        Description: String;
+        ClientName: String;
+        ClientEmail: String;
+        Project: String;
+        Rate: String;
+        TermsAndService: boolean;
+        special: boolean;
+
+        project: IStudentModel
     }
     export class GridCtrl extends wp.angularBase.BaseCtrl implements angular.IController {
+        ClientId: number;
+        Description: String;
+        ClientName: String;
+        ClientEmail: String;
+        Project: String;
+        Rate: String;
+        TermsAndService: boolean;
+        special: boolean;
+
+        infoId: number;
+        project: IStudentModel;
 
 
         $scope: DemoProjectExtension.IPathwayScope;
@@ -14,6 +35,8 @@ module DemoProjectExtension {
 
             super($scope, $mdToast);
             this.$scope = $scope;
+            this.$mdDialog = $mdDialog;
+            this.clientAdd();
             this.getClientList();
         }
 
@@ -28,21 +51,158 @@ module DemoProjectExtension {
             this.dataSvc.getPathwayDetail().then((data) => {
                 this.clientList = data;
                 console.log(data);
+               
+                this.ClientGrid();
+               
             }).catch((error) => {
                 console.log(error);
             }).finally(() => {
 
             })
         }
-        $("#gridContainer").dxDataGrid({
-            this.$scope.getClientList = {
-                dataSource: this.StudentDataService,
-                keyExpr: "ID",
-                columns: ["Client Id","Description", "Client Name", "Project", "Client Email", "Rate", "Terms And Conditons", "Special"],
-                showBorders: true
-            };
-        })
+
+        clientAdd = () => {
+
+
+            $("#buttonContainer").dxButton({
+                //colTemplate: (options) => {
+                //    console.log("rows click",options.data);
+                   /* $("<div/>").dxButton({*/
+                        icon: "plus",
+                        text: "add",
+                        onClick: () => {
+                             this.InsertClient()
+                        }
+                    })
+                }
+           /* })*/
+      /*  }*/
+
+        ClientGrid = () => {
+            
+            $("#gridContainer").dxDataGrid({
+               
+                dataSource: this.clientList,
+                keyExpr: "ClientId",
+                columns: [
+                    { caption: "Description", dataField: "Description" },
+                    { caption: "Name", dataField: "ClientName" },
+                    { caption: "Email", dataField: "ClientEmail" },
+                    { caption: "Project", dataField: "Project" },
+                    { caption: "Rate", dataField: "Rate", alignment:"center"},
+                    { caption: "Terms and Conditions", dataField: "TermsAndService" },
+                    { caption: "Special", dataField: "special" },
+                    {
+                        caption: "Action",
+                        width: "auto",
+                        cellTemplate: (container, options) =>
+                        {
+                            container.addClass("chart-cell");
+                            console.log("rows click", options.data);
+
+                            //edit
+                            $("<div/>").dxButton({                               
+                                icon: "edit",
+                                type: "default",
+                                text: "Edit",                                
+                                onClick:  (e) => {
+                                    this.UpdateClient(options.data.ClientId);
+                                }
+                            }).appendTo(container);
+
+                        //delete
+                            $("<div/>").dxButton({
+                                icon: "trash",
+                                type: "danger",
+                                text: "Delete",
+                                onClick:  (e) => {
+                                    this.DeleteClient(options.data.ClientId);
+                                }
+                            }).appendTo(container);
+
+                        //view 
+                            $("<div/>").dxButton({
+                                icon:"info",
+                                type: "success",
+                                text: "View",
+                                onClick:  (e) => {
+                                    this.ViewClient(options.data.ClientId);
+                                }
+                            }).appendTo(container);
+                        }
+
+                    }],                               
+                showBorders: true,
+
+            });
+            
+        }
+
+        InsertClient = () => {
+            this.dataSvc.postSkill(this.$scope.project).then((data) => {
+
+                this.showMessage("Client Added Successfully");
+                this.$scope.project = null;
+                console.log(data);
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+
+            })
+        }
+
+
+        ViewClient = (id) => {
+            this.ShowInfo(id);
+            console.log(id);
+            this.dataSvc.getInfoByid(id).then((data) => {
+                console.log(data);
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+
+            })
+        }
        
+        
+        UpdateClient = (id) => {
+            this.ShowInfo(id);
+            this.dataSvc.updateClient(id).then((data) => {
+                console.log(data);
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+
+            })
+        }
+
+        DeleteClient = (ClientId) => {
+            var confirm = this.$mdDialog.confirm()
+                .title('Are you sure you want to delete')
+                .textContent('If you delete you will lose all your data permanently')
+                .ariaLabel('')
+                .targetEvent(null)
+                .ok('Yes Delete')
+                .cancel('Cancel');
+            this.$mdDialog.show(confirm).then(() => {
+                this.dataSvc.deleteClient(ClientId).then((data) => {
+                    this.showMessage("Deleted Successfully");
+                    console.log(data);
+                    this.getClientList();
+
+                }).catch((error) => {
+                    console.log(error);
+                }).finally(() => {
+
+                })
+            }, () => {
+            });
+        }
+
+        ShowInfo = (id: number) => {
+            window.location.href = "/Student/Edit?ClientId=" + id;
+        }
+
     }
     GridCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];
 

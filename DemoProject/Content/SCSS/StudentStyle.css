@@ -22,3 +22,6 @@ body .buttontext {
 body td {
   align-items: center;
   text-align: center; }
+
+.demo-container td {
+  text-align: center; }
