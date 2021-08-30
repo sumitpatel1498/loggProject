@@ -1,4 +1,4 @@
-﻿/// <reference path="../../typings/angularjs/angular.d.ts" />
+﻿ /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../../typings/jQuery/jquery.d.ts" />
 
 module DemoProjectExtension {
@@ -35,28 +35,11 @@ module DemoProjectExtension {
             return deferred.promise;
         }
 
-        getPathwayDetail(): ng.IPromise<IStudentModel[]> {
-            var self = this;
-            var deferred = self.qService.defer<IStudentModel[]>();
-            var apiUrl = "https://localhost:44397/studentapi/GetClientList";
-            ajaxApi({
-                type: 'GET',
-                url: apiUrl,
-                success: (response: IStudentModel[]) => {
-                    deferred.resolve(response);
-                },
-                error: (xhr) => {
-                    console.log(xhr)
-                    Workpulse.Site.AlertJS(xhr)
-                    deferred.reject(xhr);
-                } 
-            });
-            return deferred.promise;
-        }
-        getInfoByid(id:number): ng.IPromise<IStudentModel> {
+
+        searchData(id:number): ng.IPromise<IStudentModel> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel>();
-            var apiUrl = "https://localhost:44397/studentapi/GetClientById/"+id;
+            var apiUrl = "https://localhost:44397/studentapi/searchClient/"+id;
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -71,46 +54,8 @@ module DemoProjectExtension {
             });
             return deferred.promise;
         }
-        deleteClient(ClientId :number): ng.IPromise<IStudentModel> {
-            var self = this;
-            var deferred = self.qService.defer<IStudentModel>();
-            var apiUrl = "https://localhost:44397/studentapi/RemoveClient?ClientId="+ClientId;
-            ajaxApi({
-                url: apiUrl,
-                type: 'GET',      
-                success: (response: IStudentModel) => {
-                    deferred.resolve(response);
-                },
-                error: (xhr) => {
-                    console.log(xhr)
-                    Workpulse.Site.AlertJS(xhr)
-                    deferred.reject(xhr);
-                }
-
-            });
-            return deferred.promise;
-        }
-        updateClient(pathway: IStudentModel): ng.IPromise<IStudentModel> {
-            var self = this;
-            var deferred = self.qService.defer<IStudentModel>();
-            var apiUrl = "https://localhost:44397/studentapi/UpdateClient/";
-            ajaxApi({
-                url: apiUrl,
-                type: 'POST',
-                data: JSON.stringify(pathway),
-                contentType: 'application/json',
-                success: (response: IStudentModel) => {
-                    deferred.resolve(response);
-                },
-                error: (xhr) => {
-                    console.log(xhr)
-                    Workpulse.Site.AlertJS(xhr)
-                    deferred.reject(xhr);
-                }
-
-            });
-            return deferred.promise;
-        }
+       
+       
 
 
         public static StudentDataServiceFactory($http: ng.IHttpService, $q: ng.IQService): StudentDataService {
