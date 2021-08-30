@@ -1065,11 +1065,13 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\NG\BaseController.ts" />
     <TypeScriptCompile Include="Scripts\NG\Controller\GridCtrl.ts" />
+    <TypeScriptCompile Include="Scripts\NG\Controller\LinqCtrl.ts" />
     <TypeScriptCompile Include="Scripts\NG\Controller\StudentCtrl.ts" />
     <TypeScriptCompile Include="Scripts\NG\Controller\ListCtrl.ts" />
     <TypeScriptCompile Include="Scripts\NG\Controller\UpdateCtrl.ts" />
     <TypeScriptCompile Include="Scripts\NG\Controller\ViewCtrl.ts" />
     <TypeScriptCompile Include="Scripts\NG\Model\StudentModel.ts" />
+    <TypeScriptCompile Include="Scripts\NG\Service\LinqDataService.ts" />
     <TypeScriptCompile Include="Scripts\NG\Service\StudentDataService.ts" />
     <TypeScriptCompile Include="Scripts\NG\Site.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />

@@ -33,20 +33,6 @@ var DemoProjectExtension;
                 }).finally(function () {
                 });
             };
-            _this.clientAdd = function () {
-                $("#buttonContainer").dxButton({
-                    //colTemplate: (options) => {
-                    //    console.log("rows click",options.data);
-                    /* $("<div/>").dxButton({*/
-                    icon: "plus",
-                    text: "add",
-                    onClick: function () {
-                        _this.InsertClient();
-                    }
-                });
-            };
-            /* })*/
-            /*  }*/
             _this.ClientGrid = function () {
                 $("#gridContainer").dxDataGrid({
                     dataSource: _this.clientList,
@@ -71,7 +57,7 @@ var DemoProjectExtension;
                                     type: "default",
                                     text: "Edit",
                                     onClick: function (e) {
-                                        _this.UpdateClient(options.data.ClientId);
+                                        _this.ShowInfo(options.data.ClientId, "Update");
                                     }
                                 }).appendTo(container);
                                 //delete
@@ -89,7 +75,7 @@ var DemoProjectExtension;
                                     type: "success",
                                     text: "View",
                                     onClick: function (e) {
-                                        _this.ViewClient(options.data.ClientId);
+                                        _this.ShowInfo(options.data.ClientId, "View");
                                     }
                                 }).appendTo(container);
                             }
@@ -108,24 +94,12 @@ var DemoProjectExtension;
                 }).finally(function () {
                 });
             };
-            _this.ViewClient = function (id) {
-                _this.ShowInfo(id);
+            _this.ViewClient = function (id, vw) {
+                _this.ShowInfo(id, vw);
                 console.log(id);
-                _this.dataSvc.getInfoByid(id).then(function (data) {
-                    console.log(data);
-                }).catch(function (error) {
-                    console.log(error);
-                }).finally(function () {
-                });
             };
-            _this.UpdateClient = function (id) {
-                _this.ShowInfo(id);
-                _this.dataSvc.updateClient(id).then(function (data) {
-                    console.log(data);
-                }).catch(function (error) {
-                    console.log(error);
-                }).finally(function () {
-                });
+            _this.UpdateClient = function (id, vw) {
+                _this.ShowInfo(id, vw);
             };
             _this.DeleteClient = function (ClientId) {
                 var confirm = _this.$mdDialog.confirm()
@@ -147,12 +121,12 @@ var DemoProjectExtension;
                 }, function () {
                 });
             };
-            _this.ShowInfo = function (id) {
-                window.location.href = "/Student/Edit?ClientId=" + id;
+            _this.ShowInfo = function (id, vw) {
+                window.location.href = "/Student/Edit?ClientId=" + id + "&ViewData=" + vw;
             };
             _this.$scope = $scope;
             _this.$mdDialog = $mdDialog;
-            _this.clientAdd();
+            _this.ClientId = $("#hiddenid").val();
             _this.getClientList();
             return _this;
         }

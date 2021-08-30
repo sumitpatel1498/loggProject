@@ -9,6 +9,7 @@
 <h2>Edit</h2>
 
 <input hidden Id="hiddenid" value="@ViewBag.Id" />
+<input hidden id="viewid" value="@ViewBag.View" /> 
 <div ng-app="studentApp" ng-controller="UpdateCtrl as sp">
 
     <md-content layout-padding>
@@ -19,7 +20,7 @@
             <br />
             <md-input-container class="md-block">
                 <label>Description</label>
-                <input md-maxlength="30" required md-no-asterisk name="description" ng-model="project.Description">
+                <input md-maxlength="30" required md-no-asterisk name="description" ng-model="project.Description" ng-disabled="sp.vw">
                 <div ng-messages="projectForm.description.$error">
                     <div ng-message="required">This is required.</div>
                     <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
@@ -29,7 +30,7 @@
             <div layout="row">
                 <md-input-container flex="50">
                     <label>Client Name</label>
-                    <input required name="clientName" ng-model="project.ClientName">
+                    <input required name="clientName" ng-model="project.ClientName" ng-disabled="sp.vw">
                     <div ng-messages="projectForm.clientName.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
@@ -37,7 +38,7 @@
 
                 <md-input-container flex="50">
                     <label>Project Type</label>
-                    <md-select name="type" ng-model="project.Project" required>
+                    <md-select name="type" ng-model="project.Project" required ng-disabled="sp.vw">
                         <md-option value="app">Application</md-option>
                         <md-option value="website">Website</md-option>
                     </md-select>
@@ -49,7 +50,7 @@
             <md-input-container class="md-block">
                 <label>Client Email</label>
                 <input required type="email" name="clientEmail" ng-model="project.ClientEmail"
-                       minlength="10" maxlength="100" />
+                       minlength="10" maxlength="100" ng-disabled="sp.vw" />
 
                 <div ng-messages="projectForm.clientEmail.$error" role="alert">
                     <div ng-message-exp="['required', 'minlength', 'maxlength']">
@@ -58,10 +59,10 @@
                 </div>
             </md-input-container>
 
-            <md-input-container class="md-block">
+            <md-input-container class="md-block" >
                 <label>Hourly Rate (USD)</label>
                 <input required type="number" step="any" name="rate" ng-model="project.Rate" min="800"
-                       max="4999" ng-pattern="/^1234$/" />
+                       max="4999" ng-pattern="/^1234$/"  ng-disabled="sp.vw"/>
 
                 <div ng-messages="projectForm.rate.$error" multiple md-auto-hide="false">
                     <div ng-message="required">
@@ -86,7 +87,7 @@
             </md-input-container>
 
             <md-input-container class="md-block">
-                <md-checkbox name="tos" ng-model="project.TermsAndService" ng- required>
+                <md-checkbox name="tos" ng-model="project.TermsAndService" ng-disabled="sp.vw" required>
                     I accept the terms of service.
                 </md-checkbox>
                 <div ng-messages="projectForm.TermsAndService.$error" multiple md-auto-hide="false">
@@ -97,7 +98,7 @@
             </md-input-container>
 
             <md-input-container class="md-block">
-                <md-switch class="md-primary" name="special" ng-model="project.special" required>
+                <md-switch class="md-primary" name="special" ng-model="project.special" ng-disabled="sp.vw" required>
                     Enable special options.
                 </md-switch>
                 <div ng-messages="projectForm.special.$error" multiple>
@@ -107,7 +108,7 @@
                 </div>
             </md-input-container>
             <div>
-                <md-button class="md-raised md-primary" ng-click="sp.UpdateClient()" type="submit">Update</md-button>
+                <md-button class="md-raised md-primary" ng-click="sp.UpdateClient()" type="submit" ng-hide="sp.vw">Update</md-button>
             </div>
 
             <p style="font-size:.8em; width: 100%; text-align: center;">

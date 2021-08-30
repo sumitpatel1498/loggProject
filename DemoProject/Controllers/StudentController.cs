@@ -17,9 +17,10 @@ namespace DemoProject.Controllers
             
             return View();
         }
-        public ActionResult Edit(int ClientId)
+        public ActionResult Edit(int ClientId, string ViewData)
         {
             ViewBag.Id = ClientId;
+            ViewBag.View = ViewData;
             return View();
         }
         public ActionResult AllClient()

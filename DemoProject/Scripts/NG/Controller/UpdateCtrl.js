@@ -49,6 +49,7 @@ var DemoProjectExtension;
             };
             _this.$scope = $scope;
             _this.infoId = Number($("#hiddenid").val());
+            _this.vw = $("#viewid").val() == "View" ? true : false;
             _this.ShowInfo(_this.infoId);
             $scope.GetAllData = {};
             return _this;

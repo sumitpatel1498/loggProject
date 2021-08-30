@@ -27,12 +27,14 @@ module DemoProjectExtension {
 
         $scope: DemoProjectExtension.IPathwayScope;
         private $mdDialog: any;
+        vw: boolean;
         constructor($scope: DemoProjectExtension.IPathwayScope, private dataSvc: StudentDataService, $timeout, $mdDialog: any, $mdSelect: any, $mdToast: any) {
 
             super($scope, $mdToast);
             this.$scope = $scope;            
 
             this.infoId = Number($("#hiddenid").val());
+            this.vw = $("#viewid").val() == "View" ? true : false;
             this.ShowInfo(this.infoId);
            
             $scope.GetAllData = {

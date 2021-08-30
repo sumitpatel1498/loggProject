@@ -31,12 +31,14 @@ module DemoProjectExtension {
 
         $scope: DemoProjectExtension.IPathwayScope;
         private $mdDialog: any;
+        
         constructor($scope: DemoProjectExtension.IPathwayScope, private dataSvc: StudentDataService, $timeout, $mdDialog: any, $mdSelect: any, $mdToast: any) {
 
             super($scope, $mdToast);
             this.$scope = $scope;
             this.$mdDialog = $mdDialog;
-            this.clientAdd();
+            this.ClientId = $("#hiddenid").val();
+           
             this.getClientList();
         }
 
@@ -60,23 +62,6 @@ module DemoProjectExtension {
 
             })
         }
-
-        clientAdd = () => {
-
-
-            $("#buttonContainer").dxButton({
-                //colTemplate: (options) => {
-                //    console.log("rows click",options.data);
-                   /* $("<div/>").dxButton({*/
-                        icon: "plus",
-                        text: "add",
-                        onClick: () => {
-                             this.InsertClient()
-                        }
-                    })
-                }
-           /* })*/
-      /*  }*/
 
         ClientGrid = () => {
             
@@ -106,7 +91,7 @@ module DemoProjectExtension {
                                 type: "default",
                                 text: "Edit",                                
                                 onClick:  (e) => {
-                                    this.UpdateClient(options.data.ClientId);
+                                    this.ShowInfo(options.data.ClientId, "Update");
                                 }
                             }).appendTo(container);
 
@@ -126,7 +111,7 @@ module DemoProjectExtension {
                                 type: "success",
                                 text: "View",
                                 onClick:  (e) => {
-                                    this.ViewClient(options.data.ClientId);
+                                    this.ShowInfo(options.data.ClientId, "View");
                                 }
                             }).appendTo(container);
                         }
@@ -152,30 +137,18 @@ module DemoProjectExtension {
         }
 
 
-        ViewClient = (id) => {
-            this.ShowInfo(id);
-            console.log(id);
-            this.dataSvc.getInfoByid(id).then((data) => {
-                console.log(data);
-            }).catch((error) => {
-                console.log(error);
-            }).finally(() => {
-
-            })
+        ViewClient = (id, vw) => {
+            this.ShowInfo(id, vw);
+            console.log(id);           
         }
        
         
-        UpdateClient = (id) => {
-            this.ShowInfo(id);
-            this.dataSvc.updateClient(id).then((data) => {
-                console.log(data);
-            }).catch((error) => {
-                console.log(error);
-            }).finally(() => {
-
-            })
+        UpdateClient = (id, vw) => {
+            this.ShowInfo(id, vw);           
         }
 
+        
+   
         DeleteClient = (ClientId) => {
             var confirm = this.$mdDialog.confirm()
                 .title('Are you sure you want to delete')
@@ -199,8 +172,8 @@ module DemoProjectExtension {
             });
         }
 
-        ShowInfo = (id: number) => {
-            window.location.href = "/Student/Edit?ClientId=" + id;
+        ShowInfo = (id: number, vw: string) => {
+            window.location.href = "/Student/Edit?ClientId=" + id + "&ViewData=" + vw;
         }
 
     }

@@ -6,7 +6,7 @@ module DemoProjectExtension {
     import ajaxApi = Workpulse.Site.AjaxApi;
 
 
-    export class LinqDataService {
+    export class StudentDataService {
 
         constructor(private httpService: ng.IHttpService, private qService: ng.IQService) {
         }
@@ -113,8 +113,8 @@ module DemoProjectExtension {
         }
 
 
-        public static StudentDataServiceFactory($http: ng.IHttpService, $q: ng.IQService): LinqDataService {
-            return new LinqDataService($http, $q);
+        public static StudentDataServiceFactory($http: ng.IHttpService, $q: ng.IQService): StudentDataService {
+            return new StudentDataService($http, $q);
         }
         
     }
