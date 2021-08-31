@@ -3,12 +3,12 @@
 var DemoProjectExtension;
 (function (DemoProjectExtension) {
     var ajaxApi = Workpulse.Site.AjaxApi;
-    var StudentDataService = /** @class */ (function () {
-        function StudentDataService(httpService, qService) {
+    var LinqDataService = /** @class */ (function () {
+        function LinqDataService(httpService, qService) {
             this.httpService = httpService;
             this.qService = qService;
         }
-        StudentDataService.prototype.postSkill = function (pathway) {
+        LinqDataService.prototype.postSkill = function (pathway) {
             var self = this;
             var deferred = self.qService.defer();
             var apiUrl = "https://localhost:44397/studentapi/InsertClient";
@@ -28,10 +28,10 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
-        StudentDataService.prototype.searchData = function (id) {
+        LinqDataService.prototype.searchData = function (id) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/studentapi/searchClient/" + id;
+            var apiUrl = "https://localhost:44397/linq/searchClient/" + id;
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -46,11 +46,29 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
-        StudentDataService.StudentDataServiceFactory = function ($http, $q) {
-            return new StudentDataService($http, $q);
+        //joinData(id: number): ng.IPromise<IStudentModel> {
+        //    var self = this;
+        //    var deferred = self.qService.defer<IStudentModel>();
+        //    var apiUrl = "https://localhost:44397/linq/searchClient/" + id;
+        //    ajaxApi({
+        //        type: 'GET',
+        //        url: apiUrl,
+        //        success: (response: IStudentModel) => {
+        //            deferred.resolve(response);
+        //        },
+        //        error: (xhr) => {
+        //            console.log(xhr)
+        //            Workpulse.Site.AlertJS(xhr)
+        //            deferred.reject(xhr);
+        //        }
+        //    });
+        //    return deferred.promise;
+        //}
+        LinqDataService.StudentDataServiceFactory = function ($http, $q) {
+            return new LinqDataService($http, $q);
         };
-        return StudentDataService;
+        return LinqDataService;
     }());
-    DemoProjectExtension.StudentDataService = StudentDataService;
+    DemoProjectExtension.LinqDataService = LinqDataService;
 })(DemoProjectExtension || (DemoProjectExtension = {}));
 //# sourceMappingURL=LinqDataService.js.map

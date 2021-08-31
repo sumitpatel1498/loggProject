@@ -6,7 +6,7 @@ module DemoProjectExtension {
     import ajaxApi = Workpulse.Site.AjaxApi;
 
 
-    export class LinqDataService {
+    export class StudentDataService {
 
         constructor(private httpService: ng.IHttpService, private qService: ng.IQService) {
         }
@@ -112,9 +112,69 @@ module DemoProjectExtension {
             return deferred.promise;
         }
 
+        Filter(pathway: IStudentModel): ng.IPromise<IStudentModel[]> {
+            var self = this;
+            var deferred = self.qService.defer<IStudentModel[]>();
+            var apiUrl = "https://localhost:44397/Linq/searchClient";
+            ajaxApi({
+                type: 'GET',
+                url: apiUrl,
+                success: (response: IStudentModel[]) => {
+                    deferred.resolve(response);
+                },
+                error: (xhr) => {
+                    console.log(xhr)
+                    Workpulse.Site.AlertJS(xhr)
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
+        }
 
-        public static StudentDataServiceFactory($http: ng.IHttpService, $q: ng.IQService): LinqDataService {
-            return new LinqDataService($http, $q);
+        filterByName(pathway: IStudentModel): ng.IPromise<IStudentModel[]> {
+            var self = this;
+            var deferred = self.qService.defer<IStudentModel[]>();
+            var apiUrl = "https://localhost:44397/Linq/filterByName";
+            ajaxApi({
+                type: 'GET',
+                url: apiUrl,
+                success: (response: IStudentModel[]) => {
+                    deferred.resolve(response);
+                },
+                error: (xhr) => {
+                    console.log(xhr)
+                    Workpulse.Site.AlertJS(xhr)
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
+        }
+
+        filterByGroup(pathway: IStudentModel): ng.IPromise<IStudentModel[]> {
+            var self = this;
+            var deferred = self.qService.defer<IStudentModel[]>();
+            var apiUrl = "https://localhost:44397/Linq/filterByGroup";
+            ajaxApi({
+                type: 'GET',
+                url: apiUrl,
+                success: (response: IStudentModel[]) => {
+                    deferred.resolve(response);
+                },
+                error: (xhr) => {
+                    console.log(xhr)
+                    Workpulse.Site.AlertJS(xhr)
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
+        }
+
+
+
+
+
+        public static StudentDataServiceFactory($http: ng.IHttpService, $q: ng.IQService): StudentDataService {
+            return new StudentDataService($http, $q);
         }
         
     }

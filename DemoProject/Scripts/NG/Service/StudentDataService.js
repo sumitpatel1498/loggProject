@@ -3,12 +3,12 @@
 var DemoProjectExtension;
 (function (DemoProjectExtension) {
     var ajaxApi = Workpulse.Site.AjaxApi;
-    var LinqDataService = /** @class */ (function () {
-        function LinqDataService(httpService, qService) {
+    var StudentDataService = /** @class */ (function () {
+        function StudentDataService(httpService, qService) {
             this.httpService = httpService;
             this.qService = qService;
         }
-        LinqDataService.prototype.postSkill = function (pathway) {
+        StudentDataService.prototype.postSkill = function (pathway) {
             var self = this;
             var deferred = self.qService.defer();
             var apiUrl = "https://localhost:44397/studentapi/InsertClient";
@@ -28,7 +28,7 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
-        LinqDataService.prototype.getPathwayDetail = function () {
+        StudentDataService.prototype.getPathwayDetail = function () {
             var self = this;
             var deferred = self.qService.defer();
             var apiUrl = "https://localhost:44397/studentapi/GetClientList";
@@ -46,7 +46,7 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
-        LinqDataService.prototype.getInfoByid = function (id) {
+        StudentDataService.prototype.getInfoByid = function (id) {
             var self = this;
             var deferred = self.qService.defer();
             var apiUrl = "https://localhost:44397/studentapi/GetClientById/" + id;
@@ -64,7 +64,7 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
-        LinqDataService.prototype.deleteClient = function (ClientId) {
+        StudentDataService.prototype.deleteClient = function (ClientId) {
             var self = this;
             var deferred = self.qService.defer();
             var apiUrl = "https://localhost:44397/studentapi/RemoveClient?ClientId=" + ClientId;
@@ -82,7 +82,7 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
-        LinqDataService.prototype.updateClient = function (pathway) {
+        StudentDataService.prototype.updateClient = function (pathway) {
             var self = this;
             var deferred = self.qService.defer();
             var apiUrl = "https://localhost:44397/studentapi/UpdateClient/";
@@ -102,11 +102,65 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
-        LinqDataService.StudentDataServiceFactory = function ($http, $q) {
-            return new LinqDataService($http, $q);
+        StudentDataService.prototype.Filter = function (pathway) {
+            var self = this;
+            var deferred = self.qService.defer();
+            var apiUrl = "https://localhost:44397/Linq/searchClient";
+            ajaxApi({
+                type: 'GET',
+                url: apiUrl,
+                success: function (response) {
+                    deferred.resolve(response);
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                    Workpulse.Site.AlertJS(xhr);
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
         };
-        return LinqDataService;
+        StudentDataService.prototype.filterByName = function (pathway) {
+            var self = this;
+            var deferred = self.qService.defer();
+            var apiUrl = "https://localhost:44397/Linq/filterByName";
+            ajaxApi({
+                type: 'GET',
+                url: apiUrl,
+                success: function (response) {
+                    deferred.resolve(response);
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                    Workpulse.Site.AlertJS(xhr);
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
+        };
+        StudentDataService.prototype.filterByGroup = function (pathway) {
+            var self = this;
+            var deferred = self.qService.defer();
+            var apiUrl = "https://localhost:44397/Linq/filterByGroup";
+            ajaxApi({
+                type: 'GET',
+                url: apiUrl,
+                success: function (response) {
+                    deferred.resolve(response);
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                    Workpulse.Site.AlertJS(xhr);
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
+        };
+        StudentDataService.StudentDataServiceFactory = function ($http, $q) {
+            return new StudentDataService($http, $q);
+        };
+        return StudentDataService;
     }());
-    DemoProjectExtension.LinqDataService = LinqDataService;
+    DemoProjectExtension.StudentDataService = StudentDataService;
 })(DemoProjectExtension || (DemoProjectExtension = {}));
 //# sourceMappingURL=StudentDataService.js.map

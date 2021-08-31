@@ -51,7 +51,6 @@ var DemoProjectExtension;
                             cellTemplate: function (container, options) {
                                 container.addClass("chart-cell");
                                 console.log("rows click", options.data);
-                                //edit
                                 $("<div/>").dxButton({
                                     icon: "edit",
                                     type: "default",
@@ -60,7 +59,6 @@ var DemoProjectExtension;
                                         _this.ShowInfo(options.data.ClientId, "Update");
                                     }
                                 }).appendTo(container);
-                                //delete
                                 $("<div/>").dxButton({
                                     icon: "trash",
                                     type: "danger",
@@ -69,7 +67,6 @@ var DemoProjectExtension;
                                         _this.DeleteClient(options.data.ClientId);
                                     }
                                 }).appendTo(container);
-                                //view 
                                 $("<div/>").dxButton({
                                     icon: "info",
                                     type: "success",
@@ -79,7 +76,26 @@ var DemoProjectExtension;
                                     }
                                 }).appendTo(container);
                             }
-                        }
+                        },
+                        $("#SortByName").dxButton({
+                            icon: "sortdown",
+                            text: "Name",
+                            onClick: function (e) {
+                                _this.FilterName();
+                            }
+                        }, $("#filter").dxButton({
+                            icon: "filter",
+                            text: "App Project",
+                            onClick: function (e) {
+                                _this.ClientFilter();
+                            }
+                        }, $("#grouping").dxButton({
+                            icon: "group",
+                            text: "Group",
+                            onClick: function (e) {
+                                _this.GroupData();
+                            }
+                        })))
                     ],
                     showBorders: true,
                 });
@@ -123,6 +139,39 @@ var DemoProjectExtension;
             };
             _this.ShowInfo = function (id, vw) {
                 window.location.href = "/Student/Edit?ClientId=" + id + "&ViewData=" + vw;
+            };
+            _this.ClientFilter = function () {
+                _this.dataSvc.Filter(_this.$scope.project).then(function (data) {
+                    _this.FilterList = data;
+                    console.log(data);
+                    _this.clientList = data;
+                    _this.ClientGrid();
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
+            };
+            _this.FilterName = function () {
+                _this.dataSvc.filterByName(_this.$scope.project).then(function (data) {
+                    _this.SortByName = data;
+                    console.log(data);
+                    _this.clientList = data;
+                    _this.ClientGrid();
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
+            };
+            _this.GroupData = function () {
+                _this.dataSvc.filterByGroup(_this.$scope.project).then(function (data) {
+                    _this.SortByName = data;
+                    console.log(data);
+                    _this.clientList = data;
+                    _this.ClientGrid();
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
             };
             _this.$scope = $scope;
             _this.$mdDialog = $mdDialog;

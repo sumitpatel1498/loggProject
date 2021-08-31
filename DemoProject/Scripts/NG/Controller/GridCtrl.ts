@@ -37,6 +37,7 @@ module DemoProjectExtension {
             super($scope, $mdToast);
             this.$scope = $scope;
             this.$mdDialog = $mdDialog;
+            
             this.ClientId = $("#hiddenid").val();
            
             this.getClientList();
@@ -63,12 +64,15 @@ module DemoProjectExtension {
             })
         }
 
+        
+ 
         ClientGrid = () => {
             
             $("#gridContainer").dxDataGrid({
                
                 dataSource: this.clientList,
                 keyExpr: "ClientId",
+
                 columns: [
                     { caption: "Description", dataField: "Description" },
                     { caption: "Name", dataField: "ClientName" },
@@ -85,7 +89,7 @@ module DemoProjectExtension {
                             container.addClass("chart-cell");
                             console.log("rows click", options.data);
 
-                            //edit
+                          
                             $("<div/>").dxButton({                               
                                 icon: "edit",
                                 type: "default",
@@ -95,7 +99,7 @@ module DemoProjectExtension {
                                 }
                             }).appendTo(container);
 
-                        //delete
+                       
                             $("<div/>").dxButton({
                                 icon: "trash",
                                 type: "danger",
@@ -105,7 +109,7 @@ module DemoProjectExtension {
                                 }
                             }).appendTo(container);
 
-                        //view 
+                      
                             $("<div/>").dxButton({
                                 icon:"info",
                                 type: "success",
@@ -115,8 +119,31 @@ module DemoProjectExtension {
                                 }
                             }).appendTo(container);
                         }
+                    },
+                    $("#SortByName").dxButton({
+                        icon: "sortdown",
+                        text: "Name",
+                        onClick: (e) => {
+                            this.FilterName();
+                        }
+                    },
+                    $("#filter").dxButton({
+                        icon: "filter",
+                        text: "App Project",
+                        onClick: (e) => {
+                            this.ClientFilter();
+                        }
+                    },
+                        $("#grouping").dxButton({
+                        icon: "group",
+                        text: "Group",
+                        onClick: (e) => {
+                          this.GroupData();
+                            }
+                        },
 
-                    }],                               
+
+                  )))],
                 showBorders: true,
 
             });
@@ -147,7 +174,8 @@ module DemoProjectExtension {
             this.ShowInfo(id, vw);           
         }
 
-        
+       
+       
    
         DeleteClient = (ClientId) => {
             var confirm = this.$mdDialog.confirm()
@@ -174,6 +202,51 @@ module DemoProjectExtension {
 
         ShowInfo = (id: number, vw: string) => {
             window.location.href = "/Student/Edit?ClientId=" + id + "&ViewData=" + vw;
+        }
+
+        FilterList: IStudentModel[];
+        ClientFilter = () => {
+            this.dataSvc.Filter(this.$scope.project).then((data) => {
+                this.FilterList = data;
+                console.log(data);
+                this.clientList = data;
+                this.ClientGrid();
+
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+
+            })
+        }
+
+        SortByName: IStudentModel[];
+        FilterName = () => {
+            this.dataSvc.filterByName(this.$scope.project).then((data) => {
+                this.SortByName = data;
+                console.log(data);
+                this.clientList = data;
+                this.ClientGrid();
+
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+
+            })
+        }
+
+        SortByGroup: IStudentModel[];
+        GroupData = () => {
+            this.dataSvc.filterByGroup(this.$scope.project).then((data) => {
+                this.SortByName = data;
+                console.log(data);
+                this.clientList = data;
+                this.ClientGrid();
+
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+
+            })
         }
 
     }
