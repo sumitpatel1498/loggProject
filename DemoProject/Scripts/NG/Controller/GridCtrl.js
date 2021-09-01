@@ -95,7 +95,13 @@ var DemoProjectExtension;
                             onClick: function (e) {
                                 _this.GroupData();
                             }
-                        })))
+                        }, $("#joining").dxButton({
+                            icon: "collapse",
+                            text: "Joins",
+                            onClick: function (e) {
+                                _this.GroupData();
+                            }
+                        }))))
                     ],
                     showBorders: true,
                 });
@@ -164,7 +170,18 @@ var DemoProjectExtension;
             };
             _this.GroupData = function () {
                 _this.dataSvc.filterByGroup(_this.$scope.project).then(function (data) {
-                    _this.SortByName = data;
+                    _this.SortByGroup = data;
+                    console.log(data);
+                    _this.clientList = data;
+                    _this.ClientGrid();
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(function () {
+                });
+            };
+            _this.JoinData = function () {
+                _this.dataSvc.filterByGroup(_this.$scope.project).then(function (data) {
+                    _this.SortByJoin = data;
                     console.log(data);
                     _this.clientList = data;
                     _this.ClientGrid();

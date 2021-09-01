@@ -141,9 +141,16 @@ module DemoProjectExtension {
                           this.GroupData();
                             }
                         },
+                            $("#joining").dxButton({
+                                icon: "collapse",
+                                text: "Joins",
+                                onClick: (e) => {
+                                    this.GroupData();
+                                }
+                            },
 
 
-                  )))],
+                 ))))],
                 showBorders: true,
 
             });
@@ -237,7 +244,22 @@ module DemoProjectExtension {
         SortByGroup: IStudentModel[];
         GroupData = () => {
             this.dataSvc.filterByGroup(this.$scope.project).then((data) => {
-                this.SortByName = data;
+                this.SortByGroup = data;
+                console.log(data);
+                this.clientList = data;
+                this.ClientGrid();
+
+            }).catch((error) => {
+                console.log(error);
+            }).finally(() => {
+
+            })
+        }
+
+        SortByJoin: IStudentModel[];
+        JoinData = () => {
+            this.dataSvc.filterByGroup(this.$scope.project).then((data) => {
+                this.SortByJoin = data;
                 console.log(data);
                 this.clientList = data;
                 this.ClientGrid();

@@ -169,6 +169,25 @@ module DemoProjectExtension {
             return deferred.promise;
         }
 
+        filterByJoin(pathway: IStudentModel): ng.IPromise<IStudentModel[]> {
+            var self = this;
+            var deferred = self.qService.defer<IStudentModel[]>();
+            var apiUrl = "https://localhost:44397/Linq/filterByJoin";
+            ajaxApi({
+                type: 'GET',
+                url: apiUrl,
+                success: (response: IStudentModel[]) => {
+                    deferred.resolve(response);
+                },
+                error: (xhr) => {
+                    console.log(xhr)
+                    Workpulse.Site.AlertJS(xhr)
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
+        }
+
 
 
 

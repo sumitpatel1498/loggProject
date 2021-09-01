@@ -156,6 +156,24 @@ var DemoProjectExtension;
             });
             return deferred.promise;
         };
+        StudentDataService.prototype.filterByJoin = function (pathway) {
+            var self = this;
+            var deferred = self.qService.defer();
+            var apiUrl = "https://localhost:44397/Linq/filterByJoin";
+            ajaxApi({
+                type: 'GET',
+                url: apiUrl,
+                success: function (response) {
+                    deferred.resolve(response);
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                    Workpulse.Site.AlertJS(xhr);
+                    deferred.reject(xhr);
+                }
+            });
+            return deferred.promise;
+        };
         StudentDataService.StudentDataServiceFactory = function ($http, $q) {
             return new StudentDataService($http, $q);
         };

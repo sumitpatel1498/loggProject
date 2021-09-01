@@ -18,8 +18,19 @@
           <Property Name="TermsAndService" Type="bit" Nullable="false" />
           <Property Name="special" Type="bit" />
         </EntityType>
+        <EntityType Name="ProjectDetail">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DeveloperName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DeveloperEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="DemoProjectModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectDetail" EntityType="Self.ProjectDetail" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -40,7 +51,18 @@
         </EntityType>
         <EntityContainer Name="DemoProjectEntity" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="ProjectDetails" EntityType="DemoProjectModel.ProjectDetail" />
         </EntityContainer>
+        <EntityType Name="ProjectDetail">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DeveloperName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DeveloperEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -58,6 +80,17 @@
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="TermsAndService" ColumnName="TermsAndService" />
                 <ScalarProperty Name="special" ColumnName="special" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectDetails">
+            <EntityTypeMapping TypeName="DemoProjectModel.ProjectDetail">
+              <MappingFragment StoreEntitySet="ProjectDetail">
+                <ScalarProperty Name="DeveloperEmail" ColumnName="DeveloperEmail" />
+                <ScalarProperty Name="DeveloperName" ColumnName="DeveloperName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="727498dc74c64847b633f2ad942f2e37" Name="Diagram1">
         <EntityTypeShape EntityType="DemoProjectModel.Client" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoProjectModel.ProjectDetail" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

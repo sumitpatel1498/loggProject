@@ -27,10 +27,17 @@ namespace DemoProject.Controllers
             var result = service.filterByName();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        //[HttpGet]
+        //public JsonResult filterByGroup()
+        //{
+        //    var result = service.filterByGroup();
+        //    return Json(result, JsonRequestBehavior.AllowGet);
+        //}
+
         [HttpGet]
-        public JsonResult filterByGroup()
+        public JsonResult filterByJoin()
         {
-            var result = service.filterByGroup();
+            var result = service.filterByJoin();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
