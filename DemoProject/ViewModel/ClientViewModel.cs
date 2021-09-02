@@ -9,7 +9,7 @@ namespace DemoProject.ViewModel
     public class ProejctViewModel
     {
         public string ProjectName { get; set; }
-       // public List<ClientViewModel> Result { get; set;}
+        public List<ClientViewModel> Result { get; set;}
     }
 
     public class ClientViewModel
@@ -25,11 +25,12 @@ namespace DemoProject.ViewModel
     }
     public class ProjectDetailModel
     {
+        public string ClientName { get; set; }
        // public int ProjectId { get; set; }
         public string ProjectType { get; set; }
        // public string Description { get; set; }
         public string DeveloperName { get; set; }
        // public string DeveloperEmail { get; set; }
-        public List<ClientViewModel> Result { get; set; }
+        //public List<ClientViewModel> Result { get; set; }
     }
 }

@@ -133,24 +133,8 @@ module DemoProjectExtension {
                         onClick: (e) => {
                             this.ClientFilter();
                         }
-                    },
-                        $("#grouping").dxButton({
-                        icon: "group",
-                        text: "Group",
-                        onClick: (e) => {
-                          this.GroupData();
-                            }
-                        },
-                            $("#joining").dxButton({
-                                icon: "collapse",
-                                text: "Joins",
-                                onClick: (e) => {
-                                    this.GroupData();
-                                }
-                            },
-
-
-                 ))))],
+                    },                        
+                 ))],
                 showBorders: true,
 
             });
@@ -256,20 +240,8 @@ module DemoProjectExtension {
             })
         }
 
-        SortByJoin: IStudentModel[];
-        JoinData = () => {
-            this.dataSvc.filterByGroup(this.$scope.project).then((data) => {
-                this.SortByJoin = data;
-                console.log(data);
-                this.clientList = data;
-                this.ClientGrid();
-
-            }).catch((error) => {
-                console.log(error);
-            }).finally(() => {
-
-            })
-        }
+       
+       
 
     }
     GridCtrl.$inject = ['$scope', 'StudentDataService', '$timeout', '$mdDialog', '$mdSelect', '$mdToast'];

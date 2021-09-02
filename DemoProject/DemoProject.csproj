@@ -1049,10 +1049,11 @@
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\AllClient.cshtml" />
     <Content Include="Views\Student\GridView.cshtml" />
+    <Content Include="Views\Linq\List.cshtml" />
+    <Content Include="Views\Linq\GroupView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Linq\" />
     <Folder Include="Views\StudentApi\" />
   </ItemGroup>
   <ItemGroup>
@@ -1071,6 +1072,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\NG\BaseController.ts" />
     <TypeScriptCompile Include="Scripts\NG\Controller\GridCtrl.ts" />
+    <TypeScriptCompile Include="Scripts\NG\Controller\GroupViewCtrl.ts" />
+    <TypeScriptCompile Include="Scripts\NG\Controller\JoinListCtrl.ts" />
     <TypeScriptCompile Include="Scripts\NG\Controller\StudentCtrl.ts" />
     <TypeScriptCompile Include="Scripts\NG\Controller\ListCtrl.ts" />
     <TypeScriptCompile Include="Scripts\NG\Controller\UpdateCtrl.ts" />

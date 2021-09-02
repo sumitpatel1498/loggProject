@@ -10,7 +10,7 @@ namespace DemoProject.Service
     public class LinqService
     {
         DemoProjectEntity entities = new DemoProjectEntity();
-        
+
         public List<ClientViewModel> serachClient()
         {
             List<ClientViewModel> clientViewModels = new List<ClientViewModel>();
@@ -56,71 +56,79 @@ namespace DemoProject.Service
             return vm;
         }
 
+        public List<ProejctViewModel> filterByGroup()
+        {
+            var clientRecord = entities.Clients.GroupBy(s => s.Project).ToList();
+            List<ProejctViewModel> pj = new List<ProejctViewModel>();            
+            foreach (var client in clientRecord)
+            {
+                List<ClientViewModel> vm = new List<ClientViewModel>();
+                var proj = client.ToList();
+                foreach (var pr in proj)
+                {
+                    ClientViewModel clientView = new ClientViewModel()
+
+                    {
+                        ClientId = pr.ClientId,
+                        Description = pr.Description,
+                        ClientName = pr.ClientName,
+                        Project = pr.Project,
+                        ClientEmail = pr.ClientEmail,
+                        Rate = pr.Rate,
+                        TermsAndService = pr.TermsAndService,
+                        special = pr.special != null && pr.special.Value
+                    };
+                    vm.Add(clientView);
+                }
+                ProejctViewModel project = new ProejctViewModel()
+                {
+                    ProjectName = client.Key,
+                    Result = vm
+                };
+                pj.Add(project);
+            }
+            return pj;
+        }
+
+
         //public List<ClientViewModel> filterByGroup()
         //{
-        //    var clientRecord = entities.Clients.GroupBy(s => s.Project).ToList();
-        //    List<ProejctViewModel> pj = new List<ProejctViewModel>();
-        //    foreach (var client in clientRecord)
+
+        //    var result = from project in entities.Clients
+        //                 group project by project.Project;
+
+        //    List<ClientViewModel> vm = new List<ClientViewModel>();
+        //    foreach (var client in result)
         //    {
-        //        var proj = client.ToList();
-        //        List<ClientViewModel> vm = new List<ClientViewModel>();
-        //        foreach (var pr in proj)
+        //        ClientViewModel clientView = new ClientViewModel()
         //        {
-        //            ClientViewModel clientView = new ClientViewModel()
-
-        //            {
-        //                ClientId = pr.ClientId,
-        //                Description = pr.Description,
-        //                ClientName = pr.ClientName,
-        //                Project = pr.Project,
-        //                ClientEmail = pr.ClientEmail,
-        //                Rate = pr.Rate,
-        //                TermsAndService = pr.TermsAndService,
-        //                special = pr.special != null && pr.special.Value
-        //            };
-        //            vm.Add(clientView);
-        //        }
-        //        ProejctViewModel project = new ProejctViewModel();
-        //        {
-        //            ProjectName = client.Key,
-        //                Result = vm
+        //            ClientName = client.Key
         //        };
-        //        pj.Add(project);
-
+        //        vm.Add(clientView);
         //    }
-        //    return pj;
-           
+        //    return vm;
         //}
-
-        public List<ProjectDetailModel> filterByJoin()
+        public List<ProjectDetailModel> FilterByJoin()
         {
             var result = from project in entities.Clients
                          join projectType in entities.ProjectDetails on project.Project equals projectType.ProjectType
                          select new { ClientName = project.ClientName, Project = project.Project, DeveloperName = projectType.DeveloperName };
             List<ProjectDetailModel> vm = new List<ProjectDetailModel>();
-            foreach(var client in result)
+            foreach (var client in result)
             {
-                var proj = client.Project.ToList();
-                List<ClientViewModel> cvm = new List<ClientViewModel>();
-                foreach (var pr in proj)
-                {
-                    ClientViewModel clientView = new ClientViewModel()
-                    {
-                        ClientName = client.ClientName
-                        
-                    };
-                    cvm.Add(clientView);
-                }
                 ProjectDetailModel projectView = new ProjectDetailModel()
                 {
-                    DeveloperName = client.DeveloperName 
+                    DeveloperName = client.DeveloperName,
+                    ProjectType = client.Project,
+                    ClientName = client.ClientName,
+                    
                 };
-                    vm.Add(projectView);
-                }
+                vm.Add(projectView);
+            }
             return vm;
         }
-           
+
     }
-}            
+}
 
 

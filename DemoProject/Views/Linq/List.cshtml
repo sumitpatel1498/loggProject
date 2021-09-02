@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+
+@section HeadContent {
+    @Styles.Render("~/Content/Student")
+    @Styles.Render("~/Content/css")
+}
+<br />
+<br />
+<br />
+
+
+<div ng-app="studentApp" ng-controller="JoinListCtrl as sp" ng-cloak>
+    <div>
+        <table class="table table-bordered table-hover table-responsive">
+            <tr>
+                <th>
+                    <span>Developer Name</span>
+                </th>
+                <th>
+                    <span>Project Type</span>
+                </th>
+                <th>
+                    <span>Client Name</span>
+                </th>
+            </tr>
+            <tr ng-repeat="data in sp.SortByJoin">
+                <td>{{data.DeveloperName}}</td>
+                <td>{{data.ProjectType}}</td>
+                <td>{{data.ClientName}}</td>
+                @*<td>
+                        <md-button class="buttontext md-raised md-primary" ng-click="sp.ShowInfo(data.ClientId)">View</md-button>
+                        <md-button class="buttontext md-raised md-primary" ng-click="sp.UpdateClient(data.ClientId)">Update</md-button>
+                        <md-button class="buttontext md-raised md-warn" ng-click="sp.DeleteClient(data.ClientId)">Delete</md-button>
+                    </td>*@
+            </tr>
+        </table>
+    </div>
+
+    @section scripts{
+        @Scripts.Render("~/bundles/Angular")
+        @Scripts.Render("~/bundles/Common")
+        @Scripts.Render("~/Bundle/JoinCtrl")
+    }
+</div>
+
+
+
+
+
