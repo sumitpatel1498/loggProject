@@ -38,11 +38,11 @@ var DemoProjectExtension;
                     dataSource: _this.clientList,
                     keyExpr: "ClientId",
                     columns: [
-                        { caption: "Description", dataField: "Description" },
-                        { caption: "Name", dataField: "ClientName" },
-                        { caption: "Email", dataField: "ClientEmail" },
-                        { caption: "Project", dataField: "Project" },
-                        { caption: "Rate", dataField: "Rate", alignment: "center" },
+                        { caption: "Description", dataField: "Description", width: "auto" },
+                        { caption: "Name", dataField: "ClientName", width: "auto" },
+                        { caption: "Email", dataField: "ClientEmail", width: "auto" },
+                        { caption: "Project", dataField: "Project", width: "auto" },
+                        { caption: "Rate", dataField: "Rate", alignment: "center", width: "auto" },
                         { caption: "Terms and Conditions", dataField: "TermsAndService" },
                         { caption: "Special", dataField: "special" },
                         {

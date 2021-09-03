@@ -115,7 +115,7 @@ module DemoProjectExtension {
         Filter(pathway: IStudentModel): ng.IPromise<IStudentModel[]> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel[]>();
-            var apiUrl = "https://localhost:44397/Linq/searchClient";
+            var apiUrl = "https://localhost:44397/LinqApi/searchClient";
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -134,7 +134,7 @@ module DemoProjectExtension {
         filterByName(pathway: IStudentModel): ng.IPromise<IStudentModel[]> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel[]>();
-            var apiUrl = "https://localhost:44397/Linq/filterByName";
+            var apiUrl = "https://localhost:44397/LinqApi/filterByName";
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -153,11 +153,11 @@ module DemoProjectExtension {
         filterByGroup(pathway: IStudentModel): ng.IPromise<IStudentModel[]> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel[]>();
-            var apiUrl = "https://localhost:44397/Linq/filterByGroup";
+            var apiUrl = "https://localhost:44397/LinqApi/filterByGroup";
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
-                success: (response: IStudentModel[]) => {
+                success: (response: IStudentModel[]) => { 
                     deferred.resolve(response);
                 },
                 error: (xhr) => {
@@ -172,7 +172,7 @@ module DemoProjectExtension {
         filterByJoin(pathway: IStudentModel): ng.IPromise<IStudentModel[]> {
             var self = this;
             var deferred = self.qService.defer<IStudentModel[]>();
-            var apiUrl = "https://localhost:44397/Linq/filterByJoin";
+            var apiUrl = "https://localhost:44397/LinqApi/filterByJoin";
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,

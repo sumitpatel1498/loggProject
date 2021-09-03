@@ -105,7 +105,7 @@ var DemoProjectExtension;
         StudentDataService.prototype.Filter = function (pathway) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/Linq/searchClient";
+            var apiUrl = "https://localhost:44397/LinqApi/searchClient";
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -123,7 +123,7 @@ var DemoProjectExtension;
         StudentDataService.prototype.filterByName = function (pathway) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/Linq/filterByName";
+            var apiUrl = "https://localhost:44397/LinqApi/filterByName";
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -141,7 +141,7 @@ var DemoProjectExtension;
         StudentDataService.prototype.filterByGroup = function (pathway) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/Linq/filterByGroup";
+            var apiUrl = "https://localhost:44397/LinqApi/filterByGroup";
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
@@ -159,7 +159,7 @@ var DemoProjectExtension;
         StudentDataService.prototype.filterByJoin = function (pathway) {
             var self = this;
             var deferred = self.qService.defer();
-            var apiUrl = "https://localhost:44397/Linq/filterByJoin";
+            var apiUrl = "https://localhost:44397/LinqApi/filterByJoin";
             ajaxApi({
                 type: 'GET',
                 url: apiUrl,
